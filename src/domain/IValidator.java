@@ -1,5 +1,5 @@
 package domain;
 
 public interface IValidator<E> {
-	public Boolean validateEntity(E e);
+	public void validateEntity(E e) throws Exception;
 }

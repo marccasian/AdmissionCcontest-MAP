@@ -6,6 +6,8 @@ import domain.Sectie;
 public class Controller {
 	private repository.RepoCandidati _repoC;
 	private repository.RepoSectii _repoS;
+	private domain.CandidateValidator cValidator;
+	private domain.SectieValidator sValidator;
 	public Controller(repository.RepoCandidati repoC,repository.RepoSectii repoS){
 		this._repoC = repoC;
 		this._repoS = repoS;
@@ -13,12 +15,29 @@ public class Controller {
 	
 	public void adaugaCandidat(Integer id, String nume, String tel,
 			String adresa , Integer varsta){
+		//Validare candidat
+		
 		domain.Candidat cand = new domain.Candidat(id,nume,tel,adresa,varsta);
+		try {
+			cValidator.validateEntity(cand);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			//e.printStackTrace();
+		}
 		this._repoC.add(cand);
 	}
 
 	public void adaugaSectie(Integer id, String nume, Integer nrLoc){
+		//Validare sectie
 		domain.Sectie sectie = new domain.Sectie(id,nume,nrLoc);
+		try {
+			sValidator.validateEntity(sectie);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 		this._repoS.add(sectie);
 	}
 	
