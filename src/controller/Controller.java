@@ -32,7 +32,11 @@ public class Controller {
 			cValidator.validateEntity(cand);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			if (e.getMessage() != null){
+				System.out.println(e.getMessage());
+				return;
+			}
+			
 			//e.printStackTrace();
 		}
 		this._repoC.add(cand);
@@ -46,7 +50,10 @@ public class Controller {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			System.out.println(e.getMessage());
+			if (e.getMessage() != null){
+				System.out.println(e.getMessage());
+				return;
+			}
 		}
 		this._repoS.add(sectie);
 	}
