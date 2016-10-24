@@ -8,9 +8,19 @@ public class Controller {
 	private repository.RepoSectii _repoS;
 	private domain.CandidateValidator cValidator;
 	private domain.SectieValidator sValidator;
-	public Controller(repository.RepoCandidati repoC,repository.RepoSectii repoS){
+	public Controller(){
+		repository.RepoCandidati repoC = new repository.RepoCandidati();
+		repository.RepoSectii repoS = new repository.RepoSectii();
+		
 		this._repoC = repoC;
 		this._repoS = repoS;
+		
+		repoC.add(new domain.Candidat(1,"C1","0746217312","a1",23));
+		repoC.add(new domain.Candidat(2,"C2","0746217313","a2",24));
+		repoC.add(new domain.Candidat(3,"C3","0746217314","a2",25));
+		repoS.add(new domain.Sectie(1,"S1",12));
+		repoS.add(new domain.Sectie(2,"S2",13));
+		repoS.add(new domain.Sectie(3,"S3",14));
 	}
 	
 	public void adaugaCandidat(Integer id, String nume, String tel,
