@@ -1,11 +1,14 @@
 package domain;
 
-public class Candidat implements HasId<Integer>{
+import java.io.Serializable;
+
+public class Candidat implements HasId<Integer>, Serializable{
 	private Integer _id;
 	private String _nume;
 	private String _tel;
 	private String _adresa;
 	private Integer	_varsta;
+	private static final long serialVersionUID = 1L;
 	
 	public Candidat(Integer id, String nume, String tel,
 	String adresa , Integer varsta) {

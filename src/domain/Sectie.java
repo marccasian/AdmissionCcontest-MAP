@@ -1,9 +1,13 @@
 package domain;
 
-public class Sectie implements HasId<Integer>{
+import java.io.Serializable;
+
+public class Sectie implements HasId<Integer> , Serializable{
 	private Integer _id;
 	private String _nume;
 	private Integer	_nrLoc;
+	private static final long serialVersionUID = 1L;
+	
 	
 	public Sectie(Integer id, String nume, Integer nrLoc) {
 		this._id = id;

@@ -8,6 +8,7 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
 
     public RepoCandidati() {
         all = new ArrayList<Candidat>();
+        all = SerializableIO.deserializeCandidat("Candidati.bin");
     }
     
     public static class comp implements Comparator<Candidat>{
@@ -49,6 +50,11 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
     	}
         throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
     }
+	
+	@Override
+	public void serializeEntities(){
+		SerializableIO.serializeCandidat("Candidati.bin", all);
+	}
 
     public void addCandidat(domain.Candidat c, Integer pos) {
         if (pos >= 0) {

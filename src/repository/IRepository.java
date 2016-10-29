@@ -7,4 +7,5 @@ public interface IRepository<E, ID> {
 	 Iterable<E> getAll();
 	 int getElemsNr();
 	 int getPosId(ID id);
+	 void serializeEntities();
 }

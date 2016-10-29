@@ -8,6 +8,7 @@ public class RepoSectii extends RepoGeneric<Sectie, Integer>{
 
     public RepoSectii() {
         all = new ArrayList<Sectie>();
+        all = SerializableIO.deserializeSectie("Sectie.bin");
     }
     
     public static class comp implements Comparator<Sectie>{
@@ -47,6 +48,11 @@ public class RepoSectii extends RepoGeneric<Sectie, Integer>{
     	}
         throw new RuntimeException("Nu exista Sectie cu ID-ul introdus!");
     }
+	
+	@Override
+	public void serializeEntities(){
+		SerializableIO.serializeSectie("Sectie.bin", all);
+	}
 
     public void addCandidat(domain.Sectie c, Integer pos) {
         if (pos >= 0) {
