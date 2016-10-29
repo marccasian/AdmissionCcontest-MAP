@@ -1,6 +1,6 @@
 package domain;
 
-public class Candidat {
+public class Candidat implements HasId<Integer>{
 	private Integer _id;
 	private String _nume;
 	private String _tel;

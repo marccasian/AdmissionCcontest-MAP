@@ -2,9 +2,9 @@ package repository;
 
 public interface IRepository<E, ID> {
 	 void add(E entity);
-	 E delete(ID id);
+	 E delete(int pos);
 	 E findOne(ID id);
 	 Iterable<E> getAll();
 	 int getElemsNr();
-	 int getPosId(int id);
+	 int getPosId(ID id);
 }

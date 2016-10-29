@@ -38,7 +38,7 @@ public class RepoSectii extends RepoGeneric<Sectie, Integer>{
     
 
 	@Override
-	public int getPosId(int id) {
+	public int getPosId(Integer id) {
 		// TODO Auto-generated method stub
 		for (int i=0; i< all.size(); i++){
     		if (all.get(i).getId() == id){

@@ -1,5 +1,5 @@
 package domain;
 
 public interface IValidator<E> {
-	public void validateEntity(E e) throws Exception;
+	void validateEntity(E e) throws ValidatorException, sun.security.validator.ValidatorException;
 }

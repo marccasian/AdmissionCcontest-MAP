@@ -98,48 +98,52 @@ public class UI {
 	    	return;
 	    }
 	    
-	    		
 		System.out.print("	Introduceti Numele Candidatului: ");
 		String nume = input.next(); 
         System.out.println();
-	    if (nume.length() == 0){
-	    	System.out.println("Numele nu poate fi vid!");
-	    	return;
-	    }
-	    
+//	    if (nume.length() == 0){
+//	    	System.out.println("Numele nu poate fi vid!");
+//	    	return;
+//	    }
+//	    
 	    
 		System.out.print("	Introduceti Telefonul Candidatului: ");
 		String tel = input.next(); 
         System.out.println();
-	    if (tel.length() != 10){
-	    	System.out.println("Numarul de telefon trebuie sa aiba lungimea 10!");
-	    	return;
-	    }
+//	    if (tel.length() != 10){
+//	    	System.out.println("Numarul de telefon trebuie sa aiba lungimea 10!");
+//	    	return;
+//	    }
 	    
 		System.out.print("	Introduceti Adresa Candidatului: ");
 		String adresa = input.next(); 
         System.out.println();
-	    if (adresa.length() == 0){
-	    	System.out.println("Adresa nu poate fi vida!");
-	    	return;
-	    }
+//	    if (adresa.length() == 0){
+//	    	System.out.println("Adresa nu poate fi vida!");
+//	    	return;
+//	    }
 		System.out.print("	Introduceti Varsta Candidatului: ");
 		String varstas = input.next(); 
         System.out.println();
 	    try{ 
 	    	varsta = Integer.parseInt(varstas);
-	    	if (varsta <0){
-	    		throw new Exception("Varsta trebuie sa fie pozitiva!");
-	    	}
-	    	if (varsta > 99){
-	    		throw new Exception("Student prea batran!");
-	    	}
+//	    	if (varsta <0){
+//	    		throw new ValidatorException("Varsta trebuie sa fie pozitiva!");
+//	    	}
+//	    	if (varsta > 99){
+//	    		throw new ValidatorException("Student prea batran!");
+//	    	}
 	    }
 	    catch (Exception e){
 	    	System.out.println("Varsta introdus este incorecta, trebuie sa fie numar intreg! "+e.getMessage());
 	    	return;
 	    }
-	    this._ctr.adaugaCandidat(id, nume, tel, adresa, varsta);
+	    try {
+			this._ctr.adaugaCandidat(id, nume, tel, adresa, varsta);
+		} catch (domain.ValidatorException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	    //domain.Candidat c = new domain.Candidat(id, nume, tel, adresa ,varsta);
 	    //System.out.println(c);	    
 	}
@@ -162,19 +166,19 @@ public class UI {
 		System.out.print("	Introduceti Numele Sectiei: ");
 		String nume = input.next(); 
         System.out.println();
-	    if (nume.length() == 0){
-	    	System.out.println("Numele nu poate fi vid!");
-	    	return;
-	    }
+//	    if (nume.length() == 0){
+//	    	System.out.println("Numele nu poate fi vid!");
+//	    	return;
+//	    }
 	    
 	    System.out.print("	Introduceti numerul de locuri ale sectiei: ");
 		String nrLocs = input.next(); 
         System.out.println();
 	    try{ 
 	    	nrLoc = Integer.parseInt(nrLocs);
-	    	if (nrLoc <0){
-	    		throw new Exception("Numarul de locuri trebuie sa fie pozitiv!");
-	    	}
+//	    	if (nrLoc <0){
+//	    		throw new ValidatorException("Numarul de locuri trebuie sa fie pozitiv!");
+//	    	}
 	    }
 	    catch (Exception e){
 	    	System.out.println("Numarul de locuri introdus este incorect, trebuie sa fie numar intreg! "+e.getMessage());

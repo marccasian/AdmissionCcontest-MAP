@@ -25,7 +25,8 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
         		return all.get(i);
         	}
         }
-        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!");
+        System.out.println(id);
+        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
     }
  
     @Override
@@ -38,14 +39,15 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
     
 
 	@Override
-	public int getPosId(int id) {
+	public int getPosId(Integer id) {
 		// TODO Auto-generated method stub
 		for (int i=0; i< all.size(); i++){
+			//System.out.println("Repo for id: "+all.get(i).getId());
     		if (all.get(i).getId() == id){
     			return i;
     		}
     	}
-        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!");
+        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
     }
 
     public void addCandidat(domain.Candidat c, Integer pos) {

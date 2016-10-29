@@ -1,6 +1,6 @@
 package domain;
 
-public class Sectie {
+public class Sectie implements HasId<Integer>{
 	private Integer _id;
 	private String _nume;
 	private Integer	_nrLoc;

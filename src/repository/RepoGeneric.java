@@ -2,7 +2,9 @@ package repository;
 
 import java.util.List;
 
-public abstract class RepoGeneric<E , ID extends Integer> implements IRepository<E, ID>{
+import domain.HasId;
+
+public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IRepository<E , ID>{
 	protected List<E> all;
 	
 	@Override
@@ -12,7 +14,7 @@ public abstract class RepoGeneric<E , ID extends Integer> implements IRepository
 	}
 
 	@Override
-	public E delete(ID pos) {
+	public E delete(int pos) {
 		// TODO Auto-generated method stub
 		E deletedEntity = all.get(pos);
         Boolean a =all.remove(deletedEntity);
@@ -35,7 +37,6 @@ public abstract class RepoGeneric<E , ID extends Integer> implements IRepository
 	}
 
 	@Override
-	public abstract int getPosId(int id) ;
-	
+	public abstract int getPosId(ID id) ;
 
 }
