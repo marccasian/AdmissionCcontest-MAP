@@ -1,14 +1,13 @@
 package repository;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Comparator;
 import domain.Candidat;
 
 public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
 
     public RepoCandidati() {
-        all = new ArrayList<Candidat>();
-        all = SerializableIO.deserializeCandidat("Candidati.bin");
+        //all = SerializableIO.deserializeCandidat("Candidati.bin");
     }
     
     public static class comp implements Comparator<Candidat>{
@@ -17,18 +16,6 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
 			return e1.getId().compareTo(e2.getId());
 		}
 	}
-
-    @Override
-	public Candidat findOne(Integer id) {
-		// TODO Auto-generated method stub
-        for (Integer i = 0; i < all.size(); i++) {
-        	if (all.get(i).getId() == id){
-        		return all.get(i);
-        	}
-        }
-        System.out.println(id);
-        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
-    }
  
     @Override
 	public Iterable<Candidat> getAll() {
@@ -37,22 +24,8 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
     	all.sort(com);
     	return all;
     }
-    
-
-	@Override
-	public int getPosId(Integer id) {
-		// TODO Auto-generated method stub
-		for (int i=0; i< all.size(); i++){
-			//System.out.println("Repo for id: "+all.get(i).getId());
-    		if (all.get(i).getId() == id){
-    			return i;
-    		}
-    	}
-        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
-    }
 	
-	@Override
-	public void serializeEntities(){
+	public void serializeCandidat(){
 		SerializableIO.serializeCandidat("Candidati.bin", all);
 	}
 

@@ -44,7 +44,7 @@ public class Sectie implements HasId<Integer> , Serializable{
 	}
 	
 	public String toString(){
-		return this._id+" | "+this._nume+" | "+this._nrLoc;
+		return this._id+"|"+this._nume+"|"+this._nrLoc;
 	}
 	
 	public static int compareThem(Sectie a, Sectie b) {

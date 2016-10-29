@@ -81,10 +81,10 @@ public class SerializableIO {
 	
 	public static void serializeSectie(String fName, ArrayList<Sectie> list)
 	{
-		ObjectOutputStream os=null;
+		ObjectOutputStream os1=null;
 		try {
-			os=new ObjectOutputStream(new FileOutputStream(fName));
-			os.writeObject(list);
+			os1=new ObjectOutputStream(new FileOutputStream(fName));
+			os1.writeObject(list);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,10 +93,10 @@ public class SerializableIO {
 			e.printStackTrace();
 		}
 		finally {
-			if (os!=null)
+			if (os1!=null)
 			{
 				try {
-					os.close();
+					os1.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -109,12 +109,12 @@ public class SerializableIO {
 	public static ArrayList<Sectie>  deserializeSectie(String fName)
 	{
 		ArrayList<Sectie> list=null;
-		ObjectInputStream os=null;
+		ObjectInputStream os1=null;
 		try {
-			os=new ObjectInputStream(new FileInputStream(fName));
+			os1=new ObjectInputStream(new FileInputStream(fName));
 			list=new ArrayList<>();
 			try {
-				list=(ArrayList<Sectie>)os.readObject();
+				list=(ArrayList<Sectie>)os1.readObject();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -128,10 +128,10 @@ public class SerializableIO {
 			e.printStackTrace();
 		}
 		finally{
-			if (os!=null)
+			if (os1!=null)
 			{
 				try {
-					os.close();
+					os1.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -141,6 +141,69 @@ public class SerializableIO {
 		
 		return list;
 	}
-
+//	
+//	public static void serializeSectie(String fName, ArrayList<Sectie> list)
+//	{
+//		ObjectOutputStream os=null;
+//		try {
+//			os=new ObjectOutputStream(new FileOutputStream(fName));
+//			os.writeObject(list);
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		finally {
+//			if (os!=null)
+//			{
+//				try {
+//					os.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//	}
+//	
+//	@SuppressWarnings("unchecked")
+//	public static ArrayList<Sectie>  deserializeSectie(String fName)
+//	{
+//		ArrayList<Sectie> list=null;
+//		ObjectInputStream os=null;
+//		try {
+//			os=new ObjectInputStream(new FileInputStream(fName));
+//			list=new ArrayList<>();
+//			try {
+//				list=(ArrayList<Sectie>)os.readObject();
+//			} catch (ClassNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		finally{
+//			if (os!=null)
+//			{
+//				try {
+//					os.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//		
+//		return list;
+//	}
+//
 }
 

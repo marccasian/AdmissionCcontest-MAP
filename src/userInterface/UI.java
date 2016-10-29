@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 import domain.Candidat;
 import domain.Sectie;
+import sun.security.validator.ValidatorException;
 
 public class UI {
 	private Scanner input = new Scanner(System.in);
@@ -54,13 +55,34 @@ public class UI {
 	        	System.out.println();
 	        }
 	        if (opt.equals("0")) {
+	        	_ctr.saveRepo();
 	        	break;
 	        }
 	        else if (opt.equals("1")){
-	        	adaugaCandidatUI();
+	        	try {
+	        		adaugaCandidatUI();
+				} catch (ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				} catch (domain.ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
 	        }
 	        else if (opt.equals("2")){
-	        	adaugaSectieUI();
+	        	try {
+					adaugaSectieUI();
+				} catch (ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				} catch (domain.ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
 	        }
 	        else if (opt.equals("3")){
 	        	stergeCandidatUI();
@@ -69,10 +91,30 @@ public class UI {
 	        	stergeSectieUI();
 	        }
 	        else if (opt.equals("5")){
-	        	modificareCandidatUI();
+	        	try {
+					modificareCandidatUI();
+				} catch (ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				} catch (domain.ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
 	        }
 	        else if (opt.equals("6")){
-	        	modificareSectieUI();
+	        	try {
+					modificareSectieUI();
+				} catch (ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				} catch (domain.ValidatorException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+					System.out.println(e.getMessage());
+				}
 	        }
 	        else if (opt.equals("7")){
 	        	afisareCandidati();
@@ -84,7 +126,7 @@ public class UI {
 		
 	}
 	
-	public void adaugaCandidatUI(){
+	public void adaugaCandidatUI() throws domain.ValidatorException, ValidatorException{
 		System.out.print("	Introduceti ID-ul candidatului: ");
         String ids = input.next(); 
         System.out.println();
@@ -138,17 +180,14 @@ public class UI {
 	    	System.out.println("Varsta introdus este incorecta, trebuie sa fie numar intreg! "+e.getMessage());
 	    	return;
 	    }
-	    try {
-			this._ctr.adaugaCandidat(id, nume, tel, adresa, varsta);
-		} catch (domain.ValidatorException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-		}
+	    
+		this._ctr.adaugaCandidat(id, nume, tel, adresa, varsta);
+		
 	    //domain.Candidat c = new domain.Candidat(id, nume, tel, adresa ,varsta);
 	    //System.out.println(c);	    
 	}
 	
-	public void adaugaSectieUI(){
+	public void adaugaSectieUI() throws domain.ValidatorException, ValidatorException{
 		System.out.print("	Introduceti ID-ul Sectiei: ");
         String ids = input.next(); 
         System.out.println();
@@ -184,7 +223,14 @@ public class UI {
 	    	System.out.println("Numarul de locuri introdus este incorect, trebuie sa fie numar intreg! "+e.getMessage());
 	    	return;
 	    }
-	    this._ctr.adaugaSectie(id, nume, nrLoc);	    
+	    
+	    try{
+	    	this._ctr.adaugaSectie(id, nume, nrLoc);
+	    }catch (ValidatorException | domain.ValidatorException e){
+	    	System.out.println(e.getMessage());
+	    }
+	    
+	        
 	}
 	
 	public void stergeCandidatUI(){
@@ -197,8 +243,7 @@ public class UI {
 	    	id = Integer.parseInt(ids);
 	    }
 	    catch (Exception e){
-	    	System.out.println("ID-ul introdus este 4"
-	    			+ "incorect, trebuie sa fie numar intreg!"+e.getMessage());
+	    	System.out.println("ID-ul introdus este incorect, trebuie sa fie numar intreg!"+e.getMessage());
 	    	return;
 	    }
 	    try{
@@ -232,7 +277,7 @@ public class UI {
 	    }
 	}
 	
-	public void modificareCandidatUI(){
+	public void modificareCandidatUI()throws domain.ValidatorException, ValidatorException{
 		afisareCandidati();
 		System.out.print("	Introduceti ID-ul Candidatului pe care doriti sa il modificati: ");
         String ids = input.next(); 
@@ -249,11 +294,14 @@ public class UI {
 	    	Candidat c =this._ctr.getCandidat(id);
 	    	System.out.println("Modificare: "+c);
 	    	int size = this._ctr.getNrCandidati();
+	    	Candidat cs = this._ctr.stergeCandidat(id);
 	    	adaugaCandidatUI();
 	    	if (size  == this._ctr.getNrCandidati()){
 	    		return;
 	    	}
-	    	this._ctr.stergeCandidat(id);
+	    	else if(size-1  == this._ctr.getNrCandidati()){
+	    		this._ctr.adaugaCandidat(cs.getId(), cs.getNume(), cs.getTel(), cs.getAdresa(), cs.getVarsta());
+	    	}
 	    }
 	    catch (RuntimeException e){
 	    	System.out.println(e.getMessage());
@@ -261,7 +309,7 @@ public class UI {
 	    }
 	}
 	
-	public void modificareSectieUI(){
+	public void modificareSectieUI() throws domain.ValidatorException, ValidatorException{
 		afisareSectii();
 		System.out.print("	Introduceti ID-ul Sectiei pe care doriti sa o modificati: ");
         String ids = input.next(); 
@@ -278,16 +326,18 @@ public class UI {
 	    	domain.Sectie s =this._ctr.getSectie(id);
 	    	System.out.println("Modificare: "+s);
 	    	int size = this._ctr.getNrSectii();
+	    	Sectie ss  = this._ctr.stergeSectie(id);
 	    	adaugaSectieUI();
 	    	if (size  == this._ctr.getNrSectii()){
 	    		return;
+	    	}else if(size-1  == this._ctr.getNrSectii()){
+	    		this._ctr.adaugaSectie(ss.getId(), ss.getNume(), ss.getNrLoc());
 	    	}
-	    	this._ctr.stergeSectie(id);
 	    }
 	    catch (RuntimeException e){
 	    	System.out.println(e.getMessage());
 	    	return;
-	    }
+	    } 
 	}
 	
 	public void afisareCandidati(){

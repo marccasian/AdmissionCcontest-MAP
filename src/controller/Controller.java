@@ -5,13 +5,13 @@ import domain.Sectie;
 import domain.ValidatorException;
 
 public class Controller {
-	private repository.RepoCandidati _repoC;
-	private repository.RepoSectii _repoS;
+	private repository.RepoCandidatiSerializat _repoC;
+	private repository.RepoSectiiFile _repoS;
 	private domain.CandidateValidator cValidator;
 	private domain.SectieValidator sValidator;
 	public Controller(){
-		_repoC = new repository.RepoCandidati();
-		_repoS = new repository.RepoSectii();
+		_repoC = new repository.RepoCandidatiSerializat();
+		_repoS = new repository.RepoSectiiFile("Sectii.txt");
 		
 		//this._repoC = repoC;
 		//this._repoS = repoS;
@@ -28,31 +28,18 @@ public class Controller {
 	}
 	
 	public void adaugaCandidat(Integer id, String nume, String tel,
-			String adresa , Integer varsta) throws ValidatorException{
+			String adresa , Integer varsta) throws ValidatorException, sun.security.validator.ValidatorException{
 		//Validare candidat
 		
 		domain.Candidat cand = new domain.Candidat(id,nume,tel,adresa,varsta);
-		try {
-			cValidator.validateEntity(cand);
-		} catch (sun.security.validator.ValidatorException e) {
-			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
-			return;
-		} 
+		cValidator.validateEntity(cand);
 		this._repoC.add(cand);
 	}
 
-	public void adaugaSectie(Integer id, String nume, Integer nrLoc){
+	public void adaugaSectie(Integer id, String nume, Integer nrLoc) throws sun.security.validator.ValidatorException, ValidatorException{
 		//Validare sectie
 		domain.Sectie sect = new domain.Sectie(id,nume,nrLoc);
-		try {
-			sValidator.validateEntity(sect);
-		} catch (sun.security.validator.ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.out.println(e.getMessage());
-			return;
-		} 
+		sValidator.validateEntity(sect);
 		this._repoS.add(sect);
 	}
 	
@@ -73,9 +60,9 @@ public class Controller {
 	}
 	
 	public domain.Candidat stergeCandidat(int id){
-		System.out.println("Controller id:"+id);
+		//System.out.println("Controller id:"+id);
 		int pos = this._repoC.getPosId(id);
-		System.out.println("Controller pos:"+pos);
+		//System.out.println("Controller pos:"+pos);
 		Candidat c = this._repoC.delete(pos);
 		return c;
 	}
@@ -94,6 +81,12 @@ public class Controller {
 	public domain.Sectie getSectie(int id){ 
 		Sectie s = this._repoS.findOne(id); 
 		return s;
+	}
+
+	public void saveRepo() {
+		// TODO Auto-generated method stub
+		_repoC.serializeCandidat();
+		_repoS.saveData();
 	}
 	
 	

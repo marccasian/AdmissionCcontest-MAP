@@ -1,16 +1,21 @@
 package repository;
 
 import java.util.ArrayList;
+//import java.util.List;
+
 import domain.HasId;
+import domain.ValidatorException;
 
 public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IRepository<E , ID>{
-	protected ArrayList<E> all;
+	protected ArrayList<E> all = new ArrayList<>();
 	
 	@Override
-	public void add(E entity) {
+	public void add(E entity) throws ValidatorException {
 		// TODO Auto-generated method stub
+		for (E e:all)
+			if (e.getId().equals(entity.getId()))
+				throw new ValidatorException("Exista deja o entitate cu acest ID");
 		all.add(entity);
-		serializeEntities();
 	}
 
 	@Override
@@ -19,17 +24,26 @@ public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IReposito
 		E deletedEntity = all.get(pos);
         Boolean a =all.remove(deletedEntity);
        	if (a){
-       		serializeEntities();
+       		//serializeEntities();
        		return deletedEntity;
        	}
         return null;
 	}
 
 	@Override
-	public abstract E findOne(ID id);
+	public E findOne(ID id) {
+		if (null==id)
+			return null;
+		for(E e:all)
+			if (e.getId().equals(id))
+				return e;
+		return null;
+	}
 
-	@Override
-	public abstract Iterable<E> getAll();
+//	@Override
+//	public Iterable<E> getAll(){
+//		return all;
+//	}
 
 	@Override
 	public int getElemsNr() {
@@ -38,9 +52,18 @@ public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IReposito
 	}
 
 	@Override
-	public abstract int getPosId(ID id) ;
+	public  int getPosId(ID id){
+		// TODO Auto-generated method stub
+		for (int i=0; i< all.size(); i++){
+			//System.out.println("Repo for id: "+all.get(i).getId());
+    		if (all.get(i).getId().equals(id)){
+    			return i;
+    		}
+    	}
+        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
+    }
 	
-	@Override
-	public abstract void serializeEntities() ;
+//	@Override
+//	public abstract void serializeEntities() ;
 
 }
