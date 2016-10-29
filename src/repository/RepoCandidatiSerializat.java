@@ -13,30 +13,26 @@ import domain.Candidat;
 public class RepoCandidatiSerializat extends RepoCandidati{
 
 	public RepoCandidatiSerializat(){
-		//all = SerializableIO.deserializeCandidat("Candidati.bin");
 		all = deserializeCandidat("Candidati.bin");
 	}
 	
-	public static void serializeCandidat(String fName, ArrayList<Candidat> list)
+	public static void serializeCandidat( ArrayList<Candidat> list)
 	{
+		String fName = "Candidati.bin";
 		ObjectOutputStream os=null;
 		try {
 			os=new ObjectOutputStream(new FileOutputStream(fName));
 			os.writeObject(list);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
-			if (os!=null)
-			{
+			if (os!=null){
 				try {
 					os.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -54,29 +50,23 @@ public class RepoCandidatiSerializat extends RepoCandidati{
 			try {
 				list=(ArrayList<Candidat>)os.readObject();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally{
-			if (os!=null)
-			{
+			if (os!=null){
 				try {
 					os.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		
 		return list;
 	}
 }

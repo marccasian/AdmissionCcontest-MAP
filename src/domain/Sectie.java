@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 
 public class Sectie implements HasId<Integer> , Serializable{
+	
 	private Integer _id;
 	private String _nume;
 	private Integer	_nrLoc;

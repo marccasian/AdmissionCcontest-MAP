@@ -4,14 +4,8 @@ import sun.security.validator.ValidatorException;
 
 public class CandidateValidator implements IValidator<Candidat> {
 
-	public CandidateValidator() {
-		// TODO Auto-generated constructor stub
-		
-	}
-
 	@Override
 	public void validateEntity(Candidat e) throws ValidatorException {
-		// TODO Auto-generated method stub
 		String msg ="";
 		if (e.getNume().isEmpty()){
 			msg += "Numele nu poate fi vid\n";

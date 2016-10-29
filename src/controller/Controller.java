@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import domain.Candidat;
 import domain.Sectie;
 import domain.ValidatorException;
@@ -13,23 +15,12 @@ public class Controller {
 		_repoC = new repository.RepoCandidatiSerializat();
 		_repoS = new repository.RepoSectiiFile("Sectii.txt");
 		
-		//this._repoC = repoC;
-		//this._repoS = repoS;
-		
-//		_repoC.add(new domain.Candidat(1,"C1","0746217312","a1",23));
-//		_repoC.add(new domain.Candidat(2,"C2","0746217313","a2",24));
-//		_repoC.add(new domain.Candidat(3,"C3","0746217314","a2",25));
-//		_repoS.add(new domain.Sectie(1,"S1",12));
-//		_repoS.add(new domain.Sectie(2,"S2",13));
-//		_repoS.add(new domain.Sectie(3,"S3",14));
-		
 		cValidator = new domain.CandidateValidator();
 		sValidator = new domain.SectieValidator();
 	}
 	
 	public void adaugaCandidat(Integer id, String nume, String tel,
 			String adresa , Integer varsta) throws ValidatorException, sun.security.validator.ValidatorException{
-		//Validare candidat
 		
 		domain.Candidat cand = new domain.Candidat(id,nume,tel,adresa,varsta);
 		cValidator.validateEntity(cand);
@@ -37,7 +28,6 @@ public class Controller {
 	}
 
 	public void adaugaSectie(Integer id, String nume, Integer nrLoc) throws sun.security.validator.ValidatorException, ValidatorException{
-		//Validare sectie
 		domain.Sectie sect = new domain.Sectie(id,nume,nrLoc);
 		sValidator.validateEntity(sect);
 		this._repoS.add(sect);
@@ -60,9 +50,7 @@ public class Controller {
 	}
 	
 	public domain.Candidat stergeCandidat(int id){
-		//System.out.println("Controller id:"+id);
 		int pos = this._repoC.getPosId(id);
-		//System.out.println("Controller pos:"+pos);
 		Candidat c = this._repoC.delete(pos);
 		return c;
 	}
@@ -83,9 +71,9 @@ public class Controller {
 		return s;
 	}
 
+	@SuppressWarnings("static-access")
 	public void saveRepo() {
-		// TODO Auto-generated method stub
-		_repoC.serializeCandidat();
+		_repoC.serializeCandidat((ArrayList<Candidat>) _repoC.getAll());
 		_repoS.saveData();
 	}
 	

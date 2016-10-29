@@ -14,21 +14,11 @@ import domain.ValidatorException;
 import java.io.File;
 
 public class RepoSectiiFile extends RepoSectii {
+	
 	private String fName;
+	
 	public RepoSectiiFile(String fName) {
 		
-
-//		try{
-//		    PrintWriter writer = new PrintWriter(fName, "UTF-8");
-//		    writer.println("The first line");
-//		    writer.println("The second line");
-//		    writer.flush();
-//		    writer.close();
-//		} catch (Exception e) {
-//		   // do something
-//			System.out.println(e.getMessage());
-//		}
-//		System.out.println(fName);
 		this.fName=fName;
 		loadData();
 	}
@@ -42,12 +32,8 @@ public class RepoSectiiFile extends RepoSectii {
 
 			while((line = br.readLine())!= null)
 			{
-				//System.out.println(line);
-				//String ln = line;
 				String[] fields = line.split(";");
-//				for (String e:fields){
-//					System.out.println(e);
-//				}
+				
 				if(fields.length != 3){
 					try {
 						throw new Exception("Fisier corupt/invalid!");
@@ -60,8 +46,6 @@ public class RepoSectiiFile extends RepoSectii {
 				try {
 					super.add(t);
 				} catch (ValidatorException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
 					System.out.println(e.getMessage());
 				}
 			}
@@ -83,22 +67,18 @@ public class RepoSectiiFile extends RepoSectii {
 		}
 	}
 	
-	@SuppressWarnings("unused")
+	
 	public void saveData(){
 		BufferedWriter bw = null;
-
 		try {
 			bw = new BufferedWriter(new FileWriter(fName));
-			String line;
-
-			for (Sectie s: all)
-			{
+			
+			for (Sectie s: all){
 				String st = s.toString().replace("|", ";");
 				bw.write(st,0,st.length());
 				bw.newLine();
 				bw.flush();
 			}
-
 		} catch (FileNotFoundException e) {
 			System.out.println("Can't find the file!");
 		} catch (IOException e) {
@@ -111,10 +91,8 @@ public class RepoSectiiFile extends RepoSectii {
 				} catch (IOException e) {
 					System.out.println("Cannot close fileReader");
 				}
-
 			}
 		}
-
 	}
-
+	
 }

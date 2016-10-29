@@ -23,12 +23,9 @@ public class RepoSectiiTest {
 
 	@Test
 	public void testAdd() {
-		//fail("Not yet implemented");
 		try {
 			rep.add(s);
 		} catch (ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		assertEquals(1,rep.getElemsNr());
@@ -36,12 +33,9 @@ public class RepoSectiiTest {
 
 	@Test
 	public void testDelete() {
-		//fail("Not yet implemented");
 		try {
 			rep.add(s);
 		} catch (ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		assertEquals(1,rep.getElemsNr());
@@ -51,12 +45,9 @@ public class RepoSectiiTest {
 
 	@Test
 	public void testFindOne() {
-		//fail("Not yet implemented");
 		try {
 			rep.add(s);
 		} catch (ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		assertEquals(1,rep.getElemsNr());
@@ -67,28 +58,23 @@ public class RepoSectiiTest {
 
 	@Test
 	public void testGetAll() {
-		//fail("Not yet implemented");
 		try {
 			rep.add(s);
 		} catch (ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		assertEquals(1,rep.getElemsNr());
-		
+	
 		ArrayList<Sectie> l = (ArrayList<Sectie>) rep.getAll();
 		assertEquals(l.size(),1);
 	}
 
 	@Test
 	public void testGetElemsNr() {
-		//fail("Not yet implemented");
+		
 		try {
 			rep.add(s);
 		} catch (ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		assertEquals(1,rep.getElemsNr());
@@ -96,12 +82,9 @@ public class RepoSectiiTest {
 
 	@Test
 	public void testGetPosId() {
-		//fail("Not yet implemented");
 		try {
 			rep.add(s);
 		} catch (ValidatorException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		assertEquals(0,rep.getPosId(1));

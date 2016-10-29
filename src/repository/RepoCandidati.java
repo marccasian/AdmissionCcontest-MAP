@@ -1,14 +1,9 @@
 package repository;
 
-//import java.util.ArrayList;
 import java.util.Comparator;
 import domain.Candidat;
 
 public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
-
-    public RepoCandidati() {
-        //all = SerializableIO.deserializeCandidat("Candidati.bin");
-    }
     
     public static class comp implements Comparator<Candidat>{
 		@Override
@@ -19,16 +14,11 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
  
     @Override
 	public Iterable<Candidat> getAll() {
-		// TODO Auto-generated method stub
     	Comparator<Candidat> com = new comp();
     	all.sort(com);
     	return all;
     }
 	
-	public void serializeCandidat(){
-		SerializableIO.serializeCandidat("Candidati.bin", all);
-	}
-
     public void addCandidat(domain.Candidat c, Integer pos) {
         if (pos >= 0) {
         	all.remove(pos);
