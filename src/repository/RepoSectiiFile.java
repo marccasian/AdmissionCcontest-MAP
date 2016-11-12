@@ -7,11 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 //import java.util.ArrayList;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 
 import domain.Sectie;
 import domain.ValidatorException;
-import java.io.File;
+//import java.io.File;
 
 public class RepoSectiiFile extends RepoSectii {
 	

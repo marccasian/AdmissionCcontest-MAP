@@ -26,9 +26,14 @@ public class UI {
 		map.put("6", "Modificare optiune");
 		map.put("7", "Afisare candidati");
 		map.put("8", "Afisare sectii");
+		map.put("9", "Filtrare candidati majori");
+		map.put("10", "Filtrare candidati C...");
+		map.put("11", "Filtrare sectii cu mai mult de 100 de locuri");
+		map.put("12", "Filtrare sectii S...");
+		
 		map.put("0", "Iesire");
 		
-		String opts[] = {"0","1","2","3","4","5","6","7","8"};
+		String opts[] = {"0","1","2","3","4","5","6","7","8","9","10","11","12"};
 		
 		while (true) {
 			System.out.println("-----> MENIU <-----");
@@ -40,6 +45,11 @@ public class UI {
 	        System.out.println("6 - Modificare optiune");
 	        System.out.println("7 - Afisare candidati");
 	        System.out.println("8 - Afisare sectii");
+	        System.out.println("9 - Filtrare candidati majori");
+	        System.out.println("10 - Filtrare candidati C...");
+	        System.out.println("11 - Filtrare sectii cu mai mult de 100 de locuri");
+	        System.out.println("12 - Filtrare sectii S...");
+	        
 	        System.out.println("0 - Iesire");
 	        System.out.print("	Introduceti optiunea: ");
 	        
@@ -51,7 +61,7 @@ public class UI {
 	        	System.out.print("Ati ales optiunea : "+map.get(opt)+"\n");
 	        }
 	        else{
-	        	System.out.println("Ati ales o optiune invalida. Va rugam introduceti o valoare intre 1 - 6\n");
+	        	System.out.println("Ati ales o optiune invalida. Va rugam introduceti o valoare intre 0 - 12\n");
 	        	System.out.println();
 	        }
 	        if (opt.equals("0")) {
@@ -121,6 +131,18 @@ public class UI {
 	        }
 	        else if (opt.equals("8")){
 	        	afisareSectii();
+	        }
+	        else if (opt.equals("9")){
+	        	filtrareCandidatiMajoriUI();
+	        }
+	        else if (opt.equals("10")){
+	        	filtrareCandidatiCUI();
+	        }
+	        else if (opt.equals("11")){
+	        	filtrareSectiiPeste100UI();
+	        }
+	        else if (opt.equals("12")){
+	        	filtrareSectiiSUI();
 	        }
 		}
 		
@@ -363,6 +385,36 @@ public class UI {
         }
 	}
 	
+	public <E> void afisareLista(Iterable<E> l, String msg){
+		System.out.println();
+		System.out.println(msg);
+		for (E s : l) {
+			if (s != null){
+				System.out.println(s);
+			}
+        }
+		System.out.println();System.out.println();
+	}
+	
+	public void filtrareCandidatiMajoriUI(){
+		Iterable<Candidat> l = this._ctr.filterCandidatiMajori();
+		this.afisareLista(l, "Candidati majori: ");
+	}
+	
+	public void filtrareCandidatiCUI(){
+		Iterable<Candidat> l = this._ctr.filterCandidatiC();
+		this.afisareLista(l, "Candidati C... : ");
+	}
+	
+	public void filtrareSectiiPeste100UI(){
+		Iterable<Sectie> l = this._ctr.filterSectii100();
+		this.afisareLista(l, "Sectii cu peste 100 de locuri: ");
+	}
+	
+	public void filtrareSectiiSUI(){
+		Iterable<Sectie> l = this._ctr.filterSectiiS();
+		this.afisareLista(l, "Sectii S... : ");
+	}	
 	
 }
 
