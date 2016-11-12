@@ -19,5 +19,3 @@ public class RepoSectii extends RepoGeneric<Sectie, Integer>{
     	return all;
     }
 }
-
-

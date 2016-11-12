@@ -26,5 +26,3 @@ public class RepoCandidati extends RepoGeneric<Candidat, Integer>{
         }
     }
 }
-
-

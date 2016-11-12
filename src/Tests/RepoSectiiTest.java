@@ -89,5 +89,4 @@ public class RepoSectiiTest {
 		}
 		assertEquals(0,rep.getPosId(1));
 	}
-
 }

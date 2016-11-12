@@ -51,5 +51,4 @@ public class TestSectie {
 		s.setNrLoc(1);
 		assertTrue(s.getNrLoc() == 1);
 	}
-
 }

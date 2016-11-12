@@ -87,6 +87,5 @@ public class Candidat implements HasId<Integer>, Serializable{
 		} else if (!_id.equals(other._id))
 			return false;
 		return true;
-	}
-	
+	}	
 }
