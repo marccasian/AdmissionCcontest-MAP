@@ -9,4 +9,6 @@ public interface IRepository<E, ID> {
 	 Iterable<E> getAll();
 	 int getElemsNr();
 	 int getPosId(ID id);
+	 E update(E entity);
+	 E save(E entity) throws ValidatorException;
 }

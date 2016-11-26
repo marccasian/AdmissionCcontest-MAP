@@ -51,4 +51,25 @@ public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IReposito
     	}
         throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
     }
+	
+	public E update(E entity) {
+		for (int i=0; i<all.size(); i++)
+		{
+			if (all.get(i).getId().equals(entity.getId()))
+			{
+				all.set(i, entity);
+				return null;
+			}
+		}
+		return entity;
+	}
+	
+	@Override
+	public E save(E entity) {
+		for (E e:all)
+			if (e.getId().equals(entity.getId()))
+				return entity;
+		all.add(entity);
+		return null;
+	}
 }

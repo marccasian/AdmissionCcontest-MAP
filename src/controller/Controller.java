@@ -10,11 +10,15 @@ import domain.Candidat;
 import domain.Sectie;
 import domain.ValidatorException;
 
-public class Controller {
+import utils.Observable;
+import utils.Observer;
+
+public class Controller implements Observable<Candidat>{
 	private repository.RepoCandidatiSerializat _repoC;
 	private repository.RepoSectiiFile _repoS;
 	private domain.CandidateValidator cValidator;
 	private domain.SectieValidator sValidator;
+	protected List <Observer<Candidat>> observers = new ArrayList<Observer<Candidat>>();
 	
 	Predicate<Candidat> majori=c->{return c.getVarsta()>=18;};
     Predicate<Candidat> startWithC=c->c.getNume().startsWith("C");
@@ -119,4 +123,61 @@ public class Controller {
 		Collections.sort(filt,(f1,f2)->(f1.getNume().compareTo(f2.getNume())));
 		return filt;
 	}	
+	
+	@Override
+	public void addObserver(Observer<Candidat> o) {
+		observers.add(o);
+	}
+
+	@Override
+	public void removeObserver(Observer<Candidat> o) {
+		observers.remove(o);
+	}
+
+	@Override
+	public void notifyObservers(){
+		for(Observer<Candidat> o : observers){
+			o.update(this);
+		}
+	}
+	
+	public Candidat updateC(Candidat t) throws ValidatorException, sun.security.validator.ValidatorException
+	{
+		cValidator.validateEntity(t);
+		Candidat s = _repoC.update(t);
+		if (s==null)
+		{
+			notifyObservers();
+		}
+		saveRepo();
+		return s;
+	}
+	
+	public Candidat saveC(Candidat t) throws ValidatorException, sun.security.validator.ValidatorException
+	{
+		cValidator.validateEntity(t);
+		Candidat c= null;
+		c = _repoC.save(t);
+		if (c==null)
+		{
+			notifyObservers();
+		}
+		saveRepo();
+		return c;
+	}
+	
+	public Candidat deleteC(Candidat t) throws ValidatorException, sun.security.validator.ValidatorException
+	{
+		cValidator.validateEntity(t);
+		Candidat c= null;
+		int id = t.getId();
+		int pos = _repoC.getPosId(id);
+		c = _repoC.delete(pos);
+		if (c!=null)
+		{
+			notifyObservers();
+		}
+		saveRepo();
+		return c;
+	}
 }
