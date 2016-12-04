@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane prefHeight="503.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RootController">
+   <top>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="38.0" prefHeight="201.0" prefWidth="1040.0" text="Admission Contest" textAlignment="RIGHT" textFill="#528049" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="68.0" />
+               </font>
+            </Label>
+            <MenuBar layoutX="66.0" layoutY="2.0" prefHeight="25.0" prefWidth="770.0" style="-fx-background-color: #bbff99;" AnchorPane.bottomAnchor="176.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Save" />
+                    <MenuItem mnemonicParsing="false" onAction="#handleClose" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                  <items>
+                    <MenuItem fx:id="menuItemFileCandidati" mnemonicParsing="false" onAction="#handleCandidati" text="Candidati" />
+                        <MenuItem fx:id="menuItemFileSectii" mnemonicParsing="false" onAction="#handleSectii" text="Sectii" />
+                        <MenuItem fx:id="menuItemFileInscrieri" mnemonicParsing="false" onAction="#handleInscrieri" text="Inscrieri" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="About Us">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="302.0" prefWidth="770.0" spacing="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="rootCandidatiBtn" mnemonicParsing="false" onAction="#handleCandidati" prefHeight="79.0" prefWidth="180.0" text="Candidati" textAlignment="CENTER" textFill="#037546">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="rootSectiiBtn" mnemonicParsing="false" onAction="#handleSectii" prefHeight="79.0" prefWidth="180.0" text="Sectii" textAlignment="CENTER" textFill="#037546">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="rootInscrieriBtn" mnemonicParsing="false" onAction="#handleInscrieri" prefHeight="79.0" prefWidth="180.0" text="Inscrieri" textAlignment="CENTER" textFill="#037546">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

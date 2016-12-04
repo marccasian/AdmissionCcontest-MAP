@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="sectiiAnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SectiiController">
+   <children>
+      <BorderPane prefHeight="565.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../imgs/sectii.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="150.0" prefWidth="550.0" text="Sectii" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <center>
+            <VBox alignment="CENTER" prefHeight="410.0" prefWidth="210.0" spacing="80.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="addSectieBtn" fx:id="buttonAddS" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddSectie" prefHeight="50.0" prefWidth="150.0" text="Add" />
+                  <Button id="delSectieBtn" fx:id="buttonDelS" mnemonicParsing="false" onAction="#handleDeleteSectie" prefHeight="50.0" prefWidth="150.0" text="Delete" />
+                  <Button id="editSectieBtn" fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateSectie" prefHeight="50.0" prefWidth="150.0" text="Edit" />
+               </children>
+               <padding>
+                  <Insets bottom="40.0" />
+               </padding>
+            </VBox>
+         </center>
+         <left>
+            <TableView id="sectiiTable" fx:id="sectTable" prefHeight="480.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn id="nameSColumn" fx:id="nameColumn" prefWidth="228.0" text="Nume Sectie" />
+                <TableColumn id="nrCandColumn" fx:id="nrLocColumn" prefWidth="149.0" text="Numar Candidati" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </TableView>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
