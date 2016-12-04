@@ -40,7 +40,7 @@ public class RootController {
     @FXML
     public void handleInscrieri()
     {
-        //mainApp.initSectiiViewLayout();
+        mainApp.initInscrieriViewLayout();
     }
     
     @FXML
