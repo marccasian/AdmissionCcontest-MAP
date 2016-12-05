@@ -117,7 +117,7 @@ public class Main extends Application{
             rootLayout.setCenter(centerLayout);
             //set the service and the model for controller class
             InscrieriController viewCtrl=loader.getController();
-            viewCtrl.setService(inscriereService);
+            viewCtrl.setService(inscriereService,candidatService,sectieService);
             inscriereService.addObserver(viewCtrl);
         } catch (IOException e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class Main extends Application{
 	}
 	
 	public void close(){
-		
+		primaryStage.close();
 	}
 	
 	

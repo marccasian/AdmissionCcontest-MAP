@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+import controller.ControllerCandidat;
 import controller.ControllerInscrieri;
+import controller.ControllerSectie;
 import utils.Observable;
 import utils.Observer;
 
@@ -29,6 +31,9 @@ public class InscrieriController implements Observer<Inscriere> {
     private ObservableList<Inscriere> model;
 
     ControllerInscrieri service;
+    ControllerSectie serviceS;
+    ControllerCandidat serviceC;
+    
     @FXML
     private TableView<Inscriere> inscrieriTable;
     @FXML
@@ -41,8 +46,10 @@ public class InscrieriController implements Observer<Inscriere> {
       
     }
 	//
-	public void setService(ControllerInscrieri inscriereService) {
+	public void setService(ControllerInscrieri inscriereService, ControllerCandidat servic, ControllerSectie servis) {
         this.service=inscriereService;
+        this.serviceS=servis;
+        this.serviceC=servic;
         this.model= FXCollections.observableArrayList((Collection<? extends Inscriere>)inscriereService.getInscrieri());
         inscrieriTable.setItems(model);
        
@@ -122,28 +129,29 @@ public class InscrieriController implements Observer<Inscriere> {
     }
     
     public void showInscriereSaveDialog() {
-//        try {
-//            // create a new stage for the popup dialog.
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(InscrieriController.class.getResource("AddInscriereView.fxml"));
-//            AnchorPane root = (AnchorPane) loader.load();
-//
-//            // Create the dialog Stage.
-//            Stage dialogStage = new Stage();
-//            dialogStage.setTitle("Add Inscrieree");
-//            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            //dialogStage.initOwner(primaryStage);
-//            Scene scene = new Scene(root);
-//            dialogStage.setScene(scene);
-//
-//            AddInscriereController addInscriereController= loader.getController();
-//            addInscriereController.setService(service, dialogStage);
-//
-//            dialogStage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            // create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(InscrieriController.class.getResource("AddInscriereView.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Inscriere");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+
+            AddInscriereController addInscriereController= loader.getController();
+            addInscriereController.setService(service,serviceC,serviceS,dialogStage);
+
+            dialogStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
     }
     
     public void showInscriereEditDialog(Inscriere c) {
