@@ -13,7 +13,7 @@ import utils.Observable;
 import utils.Observer;
 
 public class ControllerSectie implements Observable<Sectie>{
-	private repository.RepoSectiiFile _repoS;
+	private repository.RepoSectiiXML _repoS;
 	private domain.SectieValidator sValidator;
 	protected List <Observer<Sectie>> observers = new ArrayList<Observer<Sectie>>();
 	
@@ -21,7 +21,7 @@ public class ControllerSectie implements Observable<Sectie>{
     Predicate<Sectie> startWithS = s->s.getNume().startsWith("S");
 	
 	public ControllerSectie(){
-		_repoS = new repository.RepoSectiiFile("Sectii.txt");
+		_repoS = new repository.RepoSectiiXML("Sectii.xml");
 		
 		sValidator = new domain.SectieValidator();
 	}

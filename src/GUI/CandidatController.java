@@ -25,6 +25,7 @@ import controller.ControllerCandidat;
 import utils.Observable;
 import utils.Observer;
 
+@SuppressWarnings("unused")
 public class CandidatController implements Observer<Candidat> {
     private ObservableList<Candidat> model;
 
@@ -57,7 +58,7 @@ public class CandidatController implements Observer<Candidat> {
     	telColumn.setCellValueFactory(new PropertyValueFactory<Candidat, String>("tel"));
     }
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void update(Observable<Candidat> observable) {
             ControllerCandidat s=(ControllerCandidat)observable;

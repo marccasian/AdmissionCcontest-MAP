@@ -62,6 +62,7 @@ public class Main extends Application{
         }
     }
 	
+	@SuppressWarnings("unused")
 	public void initStartPageView() {
         try {
             // Load student view.

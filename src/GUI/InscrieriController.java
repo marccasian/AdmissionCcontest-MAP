@@ -27,6 +27,7 @@ import controller.ControllerSectie;
 import utils.Observable;
 import utils.Observer;
 
+@SuppressWarnings("unused")
 public class InscrieriController implements Observer<Inscriere> {
     private ObservableList<Inscriere> model;
 
@@ -65,7 +66,7 @@ public class InscrieriController implements Observer<Inscriere> {
     	sectieColumn.setCellValueFactory(new PropertyValueFactory<>("numes"));//merge fara, defapt nu merge :)))
     }
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void update(Observable<Inscriere> observable) {
 		ControllerInscrieri s=(ControllerInscrieri)observable;

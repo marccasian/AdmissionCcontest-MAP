@@ -16,6 +16,7 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 import controller.Controller;
 import controller.ControllerCandidat;
 
+@SuppressWarnings("unused")
 public class AddCandidatController {
 
     @FXML

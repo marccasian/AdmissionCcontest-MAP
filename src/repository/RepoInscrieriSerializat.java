@@ -12,6 +12,7 @@ import domain.Candidat;
 import domain.Inscriere;
 import domain.Sectie;
 
+@SuppressWarnings("unused")
 public class RepoInscrieriSerializat extends RepoInscrieri{
 
 	public RepoInscrieriSerializat(){

@@ -28,6 +28,7 @@ import utils.Observable;
 import utils.Observer;
 
 
+@SuppressWarnings("unused")
 public class SectiiController implements Observer<Sectie> {
     private ObservableList<Sectie> model;
     
@@ -60,7 +61,7 @@ public class SectiiController implements Observer<Sectie> {
     	nrLocColumn.setCellValueFactory(new PropertyValueFactory<Sectie, String>("nrLoc"));
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void update(Observable<Sectie> observable) {
             ControllerSectie s=(ControllerSectie)observable;

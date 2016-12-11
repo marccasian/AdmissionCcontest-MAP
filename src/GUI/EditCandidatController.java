@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import controller.ControllerCandidat;
 
+@SuppressWarnings("unused")
 public class EditCandidatController {
 
     @FXML

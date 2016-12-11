@@ -22,6 +22,7 @@ import controller.ControllerCandidat;
 import controller.ControllerInscrieri;
 import controller.ControllerSectie;
 
+@SuppressWarnings("unused")
 public class AddInscriereController {
 
 	private ObservableList<Candidat> modelC;

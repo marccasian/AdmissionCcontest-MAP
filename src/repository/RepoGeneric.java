@@ -49,7 +49,7 @@ public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IReposito
     			return i;
     		}
     	}
-        throw new RuntimeException("Nu exista Candidat cu ID-ul introdus!"+id);
+        throw new RuntimeException("Nu exista o entitate cu ID-ul introdus!"+id);
     }
 	
 	public E update(E entity) {

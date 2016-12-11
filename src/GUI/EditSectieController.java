@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import controller.ControllerSectie;
 
+@SuppressWarnings("unused")
 public class EditSectieController {
 
     @FXML
