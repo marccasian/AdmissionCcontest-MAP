@@ -54,6 +54,9 @@
                   <Button fx:id="buttonAddC" mnemonicParsing="false" onAction="#handleAddCandidat" prefHeight="50.0" prefWidth="150.0" text="Add" />
                   <Button fx:id="buttonDelC" mnemonicParsing="false" onAction="#handleDeleteCandidat" prefHeight="50.0" prefWidth="150.0" text="Delete" />
                   <Button fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateCandidat" prefHeight="50.0" prefWidth="150.0" text="Edit" />
+                  <Button fx:id="buttonModifC1" mnemonicParsing="false" onAction="#handleFilterMajori" prefHeight="50.0" prefWidth="150.0" text="Filtrare candidati majori" />
+                  <Button fx:id="buttonModifC2" mnemonicParsing="false" onAction="#handleFilterC" prefHeight="50.0" prefWidth="150.0" text="Filtrare candidati C" />
+                  <Button fx:id="buttonModifC21" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="50.0" prefWidth="150.0" text="Eliminare filtru" />
                </children>
                <padding>
                   <Insets bottom="40.0" />

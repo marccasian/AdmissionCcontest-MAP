@@ -81,6 +81,25 @@ public class CandidatController implements Observer<Candidat> {
     {
     	showCandidatSaveDialog();
     }
+    
+    
+    public void handleFilterMajori()
+    {
+    	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiMajori());
+        candTable.setItems(model);
+    }
+    
+    public void handleFilterC()
+    {
+    	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiC());
+        candTable.setItems(model);
+    }
+    
+    public void handleRemoveFilter()
+    {
+    	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.getCandidati());
+        candTable.setItems(model);
+    }    
 
     static void showMessage(Alert.AlertType type, String header, String text){
         Alert message=new Alert(type);

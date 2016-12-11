@@ -172,4 +172,23 @@ public class SectiiController implements Observer<Sectie> {
             e.printStackTrace();
         }
     }
+    
+    public void handleFilterMoreThan100()
+    {
+    	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectii100());
+        sectTable.setItems(model);
+    }
+    
+    public void handleFilterS()
+    {
+    	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectiiS());
+        sectTable.setItems(model);
+    }
+    
+    public void handleRemoveFilter()
+    {
+    	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.getSectii());
+        sectTable.setItems(model);
+    }    
+    
 }

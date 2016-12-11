@@ -37,6 +37,9 @@
                   <Button id="addSectieBtn" fx:id="buttonAddS" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddSectie" prefHeight="50.0" prefWidth="150.0" text="Add" />
                   <Button id="delSectieBtn" fx:id="buttonDelS" mnemonicParsing="false" onAction="#handleDeleteSectie" prefHeight="50.0" prefWidth="150.0" text="Delete" />
                   <Button id="editSectieBtn" fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateSectie" prefHeight="50.0" prefWidth="150.0" text="Edit" />
+                  <Button id="editSectieBtn" fx:id="buttonModifC1" mnemonicParsing="false" onAction="#handleFilterMoreThan100" prefHeight="41.0" prefWidth="150.0" text="Filtrate sectii mari" />
+                  <Button id="editSectieBtn" fx:id="buttonModifC2" mnemonicParsing="false" onAction="#handleFilterS" prefHeight="50.0" prefWidth="150.0" text="Filtrare sectii S" />
+                  <Button id="editSectieBtn" fx:id="buttonModifC3" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="50.0" prefWidth="150.0" text="Eliminare filtru" />
                </children>
                <padding>
                   <Insets bottom="40.0" />
