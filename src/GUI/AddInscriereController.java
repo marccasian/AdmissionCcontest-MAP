@@ -41,10 +41,7 @@ public class AddInscriereController {
     @FXML
     private TableColumn<Sectie, String> numesColumn;
     @FXML
-    private TableColumn<Sectie, String> nrLocsColumn;
-
-    @FXML
-    private TextField textFieldId;    
+    private TableColumn<Sectie, String> nrLocsColumn;   
     	
     private ControllerInscrieri service;
     Stage dialogStage;
@@ -72,15 +69,8 @@ public class AddInscriereController {
     public Inscriere extractInscriere(){
     	Candidat c= candidatiTable.getSelectionModel().getSelectedItem();
     	Sectie s= sectiiTable.getSelectionModel().getSelectedItem();
-    	String id=textFieldId.getText();
-    	Integer nr = 0;
-    	try{
-    		nr = Integer.parseInt(id);
-    		return new Inscriere(nr,c,s);
-    	} catch (NumberFormatException e) {
-        	showErrorMessage("ID-ul trebuie sa fie numar natural!");
-        }
-    	return null;
+    	Integer id=service.getNewID();
+    	return new Inscriere(id,c,s);
     }
     
     static void showMessage(Alert.AlertType type, String header, String text){
@@ -106,7 +96,6 @@ public class AddInscriereController {
 				Inscriere  saved=service.saveI(c);
 			    if (saved==null) {
 			        showMessage(Alert.AlertType.INFORMATION, "Salvare cu succes", "Inscrierea a fost adaugata!");
-			        clearFields();
 			    }
 			    else
 			        showErrorMessage("Exista deja o inscriere cu acest id!");
@@ -119,10 +108,6 @@ public class AddInscriereController {
         catch (Exception e) {
         	showErrorMessage(e.getMessage());
         }
-    }
-    
-    private void clearFields() {
-        textFieldId.setText("");
     }
 
     @FXML

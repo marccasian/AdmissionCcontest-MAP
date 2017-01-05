@@ -20,8 +20,6 @@ import controller.ControllerCandidat;
 public class AddCandidatController {
 
     @FXML
-    private TextField textFieldId;
-    @FXML
     private TextField textFieldName;
     @FXML
     private TextField textFieldPhone;
@@ -44,12 +42,11 @@ public class AddCandidatController {
     }
     
     public Candidat extractCandidat(){
-        String id=textFieldId.getText();
         String phone=textFieldPhone.getText();
         String name=textFieldName.getText();
         String adress=textFieldAdress.getText();
         String varsta=textFieldVarsta.getText();
-        Candidat c=new Candidat(Integer.parseInt(id),name,phone,adress, Integer.parseInt(varsta));
+        Candidat c=new Candidat(service.getNewID(),name,phone,adress, Integer.parseInt(varsta));
         return c;
     }
     
@@ -82,7 +79,7 @@ public class AddCandidatController {
         } catch (ValidatorException | sun.security.validator.ValidatorException e1) {
             showErrorMessage(e1.getMessage());
         } catch (NumberFormatException e) {
-        	showErrorMessage("ID si Varsta trebuie sa fie numere naturale!");
+        	showErrorMessage("Varsta trebuie sa fie numer natural!");
         }
         catch (Exception e) {
         	showErrorMessage(e.getMessage());
@@ -94,7 +91,6 @@ public class AddCandidatController {
         textFieldPhone.setText("");
         textFieldAdress.setText("");
         textFieldVarsta.setText("");
-        textFieldId.setText("");
     }
 
     @FXML

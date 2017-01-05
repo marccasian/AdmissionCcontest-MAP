@@ -16,8 +16,6 @@ import controller.ControllerSectie;
 public class AddSectieController {
 
     @FXML
-    private TextField textFieldId;
-    @FXML
     private TextField textFieldName;
     @FXML
     private TextField textFieldNrLoc;
@@ -38,10 +36,10 @@ public class AddSectieController {
     }
     
     public Sectie extractSectie(){
-        String id=textFieldId.getText();
+        Integer id=service.getNewID();
         String nume=textFieldName.getText();
         String nrLoc=textFieldNrLoc.getText();
-        Sectie c=new Sectie(Integer.parseInt(id),nume, Integer.parseInt(nrLoc));
+        Sectie c=new Sectie(id,nume, Integer.parseInt(nrLoc));
         return c;
     }
     
@@ -73,7 +71,7 @@ public class AddSectieController {
         } catch (ValidatorException | sun.security.validator.ValidatorException e1) {
             showErrorMessage(e1.getMessage());
         } catch (NumberFormatException e) {
-        	showErrorMessage("ID-ul si numarul de locuri trebuie sa fie numere naturale!");
+        	showErrorMessage("Numarul de locuri trebuie sa fie numer natural!");
         }
         catch (Exception e) {
         	showErrorMessage(e.getMessage());
@@ -83,7 +81,6 @@ public class AddSectieController {
     private void clearFields() {
     	textFieldName.setText("");
         textFieldNrLoc.setText("");
-        textFieldId.setText("");
     }
 
     @FXML

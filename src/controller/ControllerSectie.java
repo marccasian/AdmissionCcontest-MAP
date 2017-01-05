@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import domain.Candidat;
 import domain.Sectie;
 import domain.ValidatorException;
 
@@ -27,10 +28,19 @@ public class ControllerSectie implements Observable<Sectie>{
 	}
 	
 	public void adaugaSectie(Integer id, String nume, Integer nrLoc) throws sun.security.validator.ValidatorException, ValidatorException{
-		domain.Sectie sect = new domain.Sectie(id,nume,nrLoc);
+		domain.Sectie sect = new domain.Sectie(getNewID(),nume,nrLoc);
 		sValidator.validateEntity(sect);
 		this._repoS.add(sect);
 	}
+	
+	public Integer getNewID() {
+		int max = 0;
+		for (Sectie c: this.getSectii()){
+			if (c.getId() > max) max = c.getId();
+		}
+		return max+1;
+	}
+
 	
 	public int getNrSectii(){
 		return this._repoS.getElemsNr();

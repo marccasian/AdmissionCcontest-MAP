@@ -20,10 +20,18 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 	
 	public void adaugaInscriere(Integer id, Candidat c, Sectie s) throws ValidatorException, sun.security.validator.ValidatorException{
 		
-		domain.Inscriere insc = new domain.Inscriere(id,c,s);
+		domain.Inscriere insc = new domain.Inscriere(getNewID(),c,s);
 		this._repoI.add(insc);
 	}
 	
+	public Integer getNewID() {
+		int max = 0;
+		for (Inscriere i: this.getInscrieri()){
+			if (i.getId() > max) max = i.getId();
+		}
+		return max+1;
+	}
+
 	public Iterable<domain.Inscriere> getInscrieri(){
 		return this._repoI.getAll();
 	}

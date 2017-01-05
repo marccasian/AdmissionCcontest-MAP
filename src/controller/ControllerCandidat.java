@@ -30,11 +30,19 @@ public class ControllerCandidat implements Observable<Candidat>{
 	public void adaugaCandidat(Integer id, String nume, String tel,
 			String adresa , Integer varsta) throws ValidatorException, sun.security.validator.ValidatorException{
 		
-		domain.Candidat cand = new domain.Candidat(id,nume,tel,adresa,varsta);
+		domain.Candidat cand = new domain.Candidat(getNewID(),nume,tel,adresa,varsta);
 		cValidator.validateEntity(cand);
 		this._repoC.add(cand);
 	}
 	
+	public Integer getNewID() {
+		int max = 0;
+		for (Candidat c: this.getCandidati()){
+			if (c.getId() > max) max = c.getId();
+		}
+		return max+1;
+	}
+
 	public Iterable<domain.Candidat> getCandidati(){
 		return this._repoC.getAll();
 	}
