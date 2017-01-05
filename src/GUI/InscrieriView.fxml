@@ -53,6 +53,7 @@
                <children>
                   <Button fx:id="buttonAddI" mnemonicParsing="false" onAction="#handleAddInscriere" prefHeight="50.0" prefWidth="150.0" text="Add" />
                   <Button fx:id="buttonDelI" mnemonicParsing="false" onAction="#handleDeleteInscriere" prefHeight="50.0" prefWidth="150.0" text="Delete" />
+                  <Button fx:id="buttonRaport" mnemonicParsing="false" onAction="#handleTop3" prefHeight="50.0" prefWidth="150.0" text="Top 3 Sectii" />
                </children>
                <padding>
                   <Insets bottom="40.0" />

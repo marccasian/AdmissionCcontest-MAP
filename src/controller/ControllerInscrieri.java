@@ -1,9 +1,12 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import domain.Candidat;
 import domain.Inscriere;
+import domain.RaportItem;
 import domain.Sectie;
 import domain.ValidatorException;
 import utils.Observable;
@@ -108,6 +111,41 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 		}
 		saveRepo();
 		return c;
+	}
+	
+	public static class comp implements Comparator<RaportItem>{
+		@Override
+		public int compare(RaportItem e1, RaportItem e2){
+			return -1 * e1.getNrLocOcupate().compareTo(e2.getNrLocOcupate());
+		}
+	}
+
+	public Collection<? extends RaportItem> getRaport() {
+		ArrayList<domain.RaportItem> rap = new ArrayList<domain.RaportItem>();
+		for (Inscriere i: getInscrieri()){
+			Boolean ok = false; 
+			for (RaportItem r : rap){
+				if (r.getSectie().getId() == i.get_sectie().getId()){
+					ok = true;
+					r.setNrLocOcupate(r.getNrLocOcupate() + 1);
+					break;
+				}
+			}
+			if (!ok){
+				RaportItem new_ri = new RaportItem(i.get_sectie(),1);
+				rap.add(new_ri);
+			}
+		}
+		Comparator<RaportItem> com = new comp();
+		rap.sort(com);
+		ArrayList<domain.RaportItem> result = new ArrayList<domain.RaportItem>();
+		for (int i = 0; i < 3; i++ ){
+			result.add(new RaportItem());
+		}
+		for (int i = 0; i < 3 && i < rap.size(); i++ ){
+			result.set(i, rap.get(i));
+		}
+		return result;
 	}
 	
 }

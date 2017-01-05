@@ -89,6 +89,11 @@ public class InscrieriController implements Observer<Inscriere> {
     {
     	showInscriereSaveDialog();
     }
+    
+    public void handleTop3()
+    {
+    	showTop3Dialog();
+    }
 
     static void showMessage(Alert.AlertType type, String header, String text){
         Alert message=new Alert(type);
@@ -146,6 +151,32 @@ public class InscrieriController implements Observer<Inscriere> {
 
             AddInscriereController addInscriereController= loader.getController();
             addInscriereController.setService(service,serviceC,serviceS,dialogStage);
+
+            dialogStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+    }
+    
+    public void showTop3Dialog() {
+        try {
+            // create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(InscrieriController.class.getResource("Top3View.fxml"));
+            AnchorPane root = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Top 3 sectii");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            //dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+
+            RaportController raportController= loader.getController();
+            raportController.setService(service,serviceC,serviceS,dialogStage);
 
             dialogStage.show();
 
