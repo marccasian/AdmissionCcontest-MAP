@@ -13,7 +13,7 @@ import utils.Observable;
 import utils.Observer;
 
 public class ControllerCandidat implements Observable<Candidat>{
-	private repository.RepoCandidatiSerializat _repoC;
+	private repository.RepoCandidatiXML _repoC;
 	
 	private domain.CandidateValidator cValidator;
 	
@@ -23,7 +23,7 @@ public class ControllerCandidat implements Observable<Candidat>{
     Predicate<Candidat> startWithC=c->((domain.Candidat) c).getNume().startsWith("C");
 
 	public ControllerCandidat(){
-		_repoC = new repository.RepoCandidatiSerializat();
+		_repoC = new repository.RepoCandidatiXML("Candidati.xml");
 		cValidator = new domain.CandidateValidator();
 	}
 	
@@ -62,9 +62,8 @@ public class ControllerCandidat implements Observable<Candidat>{
 		return c;
 	}
 	
-	@SuppressWarnings("static-access")
 	public void saveRepo() {
-		_repoC.serializeCandidat((ArrayList<domain.Candidat>) _repoC.getAll());
+		_repoC.saveData();
 	}
 	
 	public static <E> List<E> filtrare(List<E> list, Predicate<E> prd){

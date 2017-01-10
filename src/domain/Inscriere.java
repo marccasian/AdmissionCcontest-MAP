@@ -5,25 +5,6 @@ import java.io.Serializable;
 public class Inscriere implements HasId<Integer>,Serializable{
 	private Candidat _candidat;
 	private Sectie _sectie;
-	private String numec;
-	
-	public String isNumec(){
-		return numec;
-	}
-	
-	public String isNumes(){
-		return numes;
-	}
-	
-	public String getNumec() {
-		return numec;
-	}
-
-	public String getNumes() {
-		return numes;
-	}
-
-	private String numes;
 	private Integer _id;
 
 	private static final long serialVersionUID = 1L;
@@ -32,12 +13,18 @@ public class Inscriere implements HasId<Integer>,Serializable{
 		this._sectie = s;
 		this._candidat = c;	
 		this._id = id;
-		this.numec = this._candidat.getNume();
-		this.numes = this._sectie.getNume();
 	}
 	
 	public Inscriere(){
 		this(0,null, null);
+	}
+	
+	public String getNumec() {
+		return this._candidat.getNume()+"_"+this._candidat.getId().toString();
+	}
+
+	public String getNumes() {
+		return this._sectie.getNume()+"_"+this._sectie.getId().toString();
 	}
 	
 	
@@ -69,7 +56,7 @@ public class Inscriere implements HasId<Integer>,Serializable{
 
 	
 	public String toString(){
-		return this._candidat.getNume()+" s-a inscris la "+this._sectie.getNume();
+		return this._id.toString()+"_"+this._candidat.getNume()+" s-a inscris la "+this._sectie.getNume();
 	}
 	
 	@Override

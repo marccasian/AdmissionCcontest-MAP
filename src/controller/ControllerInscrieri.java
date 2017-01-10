@@ -13,12 +13,12 @@ import utils.Observable;
 import utils.Observer;
 
 public class ControllerInscrieri implements Observable<Inscriere>{
-	private repository.RepoInscrieriSerializat _repoI;
+	private repository.RepoInscrieriXML _repoI;
 	
 	protected List <Observer<Inscriere>> observers = new ArrayList<Observer<Inscriere>>();
 	
 	public ControllerInscrieri(){
-		_repoI = new repository.RepoInscrieriSerializat();
+		_repoI = new repository.RepoInscrieriXML("Inscrieri.XML");
 	}
 	
 	public void adaugaInscriere(Integer id, Candidat c, Sectie s) throws ValidatorException, sun.security.validator.ValidatorException{
@@ -54,9 +54,8 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 		return c;
 	}
 	
-	@SuppressWarnings("static-access")
 	public void saveRepo() {
-		_repoI.serializeInscrieri((ArrayList<domain.Inscriere>) _repoI.getAll());
+		_repoI.saveData();
 	}
 	
 	@Override

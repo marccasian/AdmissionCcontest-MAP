@@ -67,8 +67,9 @@ public abstract class RepoGeneric<E extends HasId<ID> , ID> implements IReposito
 	@Override
 	public E save(E entity) {
 		for (E e:all)
-			if (e.getId().equals(entity.getId()))
+			if (e.getId().equals(entity.getId())){
 				return entity;
+			}
 		all.add(entity);
 		return null;
 	}
