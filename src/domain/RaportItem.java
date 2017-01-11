@@ -41,7 +41,7 @@ public class RaportItem implements Serializable{
 	}
 	
 	public String toString(){
-		return this._sectie+"|"+this._nrLocOcupate;
+		return "Sectia " + this._sectie.getNume()+" are "+this._nrLocOcupate + " locuri ocupate";
 	}
 	
 	public static int compareThem(RaportItem a, RaportItem b) {

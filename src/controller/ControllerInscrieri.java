@@ -1,9 +1,24 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.RomanList;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import domain.Candidat;
 import domain.Inscriere;
 import domain.RaportItem;
@@ -145,6 +160,43 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 			result.set(i, rap.get(i));
 		}
 		return result;
+	}
+
+	public String exportToPDF(String fileName) {
+		Document document = new Document();
+		Collection<? extends RaportItem> rap = getRaport();
+  		try
+  		{
+	     	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
+	     	document.open();
+	     	document.addAuthor("Casian Nicolae Marc");
+	     	document.addCreationDate();
+	     	document.addCreator("Casian Nicolae Marc");
+	     	document.addTitle("Top 3 Sectii");
+	     	document.addSubject("Raport: top 3 cele mai solicitate sectii");
+	     	Font fontbold = FontFactory.getFont("Times-Roman", 20, Font.BOLD);
+	     	Paragraph p = new Paragraph("Top 3 sectii", fontbold);
+	     	p.setAlignment(Element.ALIGN_CENTER);
+	     			
+	     	document.add(p); 
+	     	document.add(new Paragraph("\n"));
+	     	RomanList romanList = new RomanList();
+	     	for(RaportItem r :rap){
+	     		romanList.add(new ListItem(r.toString()));
+	     	}
+	        document.add(romanList);
+	     	document.close();
+	     	writer.close();
+  		} catch (DocumentException e)
+  		{
+	  		e.printStackTrace();
+  		} catch (FileNotFoundException e)
+  		{
+	  		e.printStackTrace();
+  		}
+  		Path currentRelativePath = Paths.get(fileName);
+  		String s = currentRelativePath.toAbsolutePath().toString();
+		return s;
 	}
 	
 }

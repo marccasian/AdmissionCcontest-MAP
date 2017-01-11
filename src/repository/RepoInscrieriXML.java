@@ -75,7 +75,6 @@ private String fName;
                 case XMLStreamReader.START_ELEMENT:
                     if (reader.getLocalName().equals("property")) {
                         currentPropertyName = reader.getAttributeValue(null, "name");
-
                     }
                     break;
                 case XMLStreamReader.END_ELEMENT:

@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -96,5 +97,21 @@ public class RaportController implements Observer<Inscriere> {
     @FXML
     public void handleCancel(){
         dialogStage.close();
-    }    
+    }
+    
+    public void handleExportPDF()
+    {
+    	exportToPDF();
+    }
+	private void exportToPDF() {
+		try{
+			String path = this.service.exportToPDF("Top3.pdf");
+			showMessage(Alert.AlertType.INFORMATION, "Raport exportat cu succes", "Path to pdf: "+ path);
+		}
+		catch (Exception e){
+			showErrorMessage("Exportarea raportului a esuat!");
+			System.out.println(e.getMessage());
+		}
+		
+	}
 }

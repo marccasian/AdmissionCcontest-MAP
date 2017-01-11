@@ -115,14 +115,14 @@ public class InscrieriController implements Observer<Inscriere> {
 			if (null != c){        	
 				Inscriere sters = service.deleteI(c);
 				if (sters != null) { 
-					showMessage(Alert.AlertType.INFORMATION, "Inscriere sters!", "Inscriereul "+sters.toString()+" a fost sters cu succes!");
+					showMessage(Alert.AlertType.INFORMATION, "Inscriere stearsa!", "Inscriereul "+sters.toString()+" a fost stearsa cu succes!");
 				}
 				else{
-					showErrorMessage("Stergerea candidatului a esuat!");
+					showErrorMessage("Stergerea inscrierii a esuat!");
 				}
 			}
 			else{
-				showErrorMessage("Nu ati selectat nici un candidat!");
+				showErrorMessage("Nu ati selectat nici o inscriere!");
 			}
 					
 		} catch (ValidatorException | sun.security.validator.ValidatorException e1) {
