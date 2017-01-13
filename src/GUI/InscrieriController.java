@@ -4,12 +4,14 @@ import domain.ValidatorException;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import domain.Candidat;
 import domain.Inscriere;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,6 +43,10 @@ public class InscrieriController implements Observer<Inscriere> {
     private TableColumn<Inscriere, String> candidatColumn;
     @FXML
     private TableColumn<Inscriere, String> sectieColumn;
+    @FXML
+    private Pagination pagination ;
+    
+    final private int rowsPerPage = 15;
 
     
 	public InscrieriController(){
@@ -52,8 +58,20 @@ public class InscrieriController implements Observer<Inscriere> {
         this.serviceS=servis;
         this.serviceC=servic;
         this.model= FXCollections.observableArrayList((Collection<? extends Inscriere>)inscriereService.getInscrieri());
-        inscrieriTable.setItems(model);
+        this.pagination.setPageCount(getNrPages());
+        this.pagination.setCurrentPageIndex(0);
+        updateTable(inscrieriTable, 0);
        
+    }
+	
+	private void updateTable(TableView<Inscriere> table, Integer index) {
+		this.pagination.setPageCount(getNrPages());
+        int start = index * rowsPerPage ;
+        int end = start + rowsPerPage;
+        if (start + rowsPerPage > this.model.size()){
+        	end = this.model.size();
+        }
+        table.getItems().setAll(FXCollections.observableArrayList(this.model.subList(start, end)));
     }
 	
 	 /**
@@ -64,6 +82,20 @@ public class InscrieriController implements Observer<Inscriere> {
     private void initialize() {
     	candidatColumn.setCellValueFactory(new PropertyValueFactory<>("numec"));
     	sectieColumn.setCellValueFactory(new PropertyValueFactory<>("numes"));//merge fara, defapt nu merge :)))
+    	pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> updateTable(inscrieriTable, newIndex.intValue()));
+    }
+    
+    private int getNrPages(){
+    	int last_pag = 0;
+        if (this.model.size() % rowsPerPage != 0){
+        	last_pag = 1;
+        }
+        return this.model.size() / rowsPerPage + last_pag;
+    }
+    
+    private void refreshTable(){
+    	this.pagination.setPageCount(getNrPages());
+        updateTable(inscrieriTable, pagination.getCurrentPageIndex());  
     }
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -71,6 +103,7 @@ public class InscrieriController implements Observer<Inscriere> {
     public void update(Observable<Inscriere> observable) {
 		ControllerInscrieri s=(ControllerInscrieri)observable;
             model.setAll((List)s.getInscrieri());
+            refreshTable();
     }
     
     public void handleUpdateInscriere(){
@@ -128,6 +161,7 @@ public class InscrieriController implements Observer<Inscriere> {
 		} catch (ValidatorException | sun.security.validator.ValidatorException e1) {
             showErrorMessage(e1.getMessage());
         }
+		refreshTable();
     }
     
     public void save(ActionEvent e){

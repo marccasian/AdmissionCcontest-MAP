@@ -81,7 +81,7 @@ public class Main extends Application{
         try {
             // Load student view.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("/GUI/CandidatiView.fxml"));
+            loader.setLocation(Main.class.getResource("/GUI/CandidatiView2.fxml"));
             centerLayout = (AnchorPane) loader.load();
             rootLayout.setCenter(centerLayout);
             //set the service and the model for controller class

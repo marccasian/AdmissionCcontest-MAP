@@ -8,18 +8,23 @@ import domain.Candidat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import controller.ControllerCandidat;
 import utils.Observable;
@@ -36,16 +41,30 @@ public class CandidatController implements Observer<Candidat> {
     private TableColumn<Candidat, String> nameColumn;
     @FXML
     private TableColumn<Candidat, String> telColumn;
-
+    @FXML
+    private Pagination pagination ;
+    
+    final private int rowsPerPage = 15;
     
 	public CandidatController(){
-      
     }
 	
 	public void setService(ControllerCandidat candidatService) {
         this.service=candidatService;
         this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)candidatService.getCandidati());
-        candTable.setItems(model);
+        this.pagination.setPageCount(getNrPages());
+        this.pagination.setCurrentPageIndex(0);
+        updateTable(candTable, 0);
+    }
+	
+	private void updateTable(TableView<Candidat> table, Integer index) {
+		this.pagination.setPageCount(getNrPages());
+        int start = index * rowsPerPage ;
+        int end = start + rowsPerPage;
+        if (start + rowsPerPage > this.model.size()){
+        	end = this.model.size();
+        }
+        table.getItems().setAll(FXCollections.observableArrayList(this.model.subList(start, end)));
     }
 	
 	 /**
@@ -56,13 +75,28 @@ public class CandidatController implements Observer<Candidat> {
     private void initialize() {
     	nameColumn.setCellValueFactory(new PropertyValueFactory<Candidat, String>("nume"));
     	telColumn.setCellValueFactory(new PropertyValueFactory<Candidat, String>("tel"));
+    	pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> updateTable(candTable, newIndex.intValue()));
     }
-
+    
+    private int getNrPages(){
+    	int last_pag = 0;
+        if (this.model.size() % rowsPerPage != 0){
+        	last_pag = 1;
+        }
+        return this.model.size() / rowsPerPage + last_pag;
+    }
+    
+    private void refreshTable(){
+    	this.pagination.setPageCount(getNrPages());
+        updateTable(candTable, pagination.getCurrentPageIndex());  
+    }
+    
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void update(Observable<Candidat> observable) {
             ControllerCandidat s=(ControllerCandidat)observable;
             model.setAll((List)s.getCandidati());
+            refreshTable();
     }
     
     public void handleUpdateCandidat(){
@@ -86,19 +120,19 @@ public class CandidatController implements Observer<Candidat> {
     public void handleFilterMajori()
     {
     	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiMajori());
-        candTable.setItems(model);
+    	refreshTable();
     }
     
     public void handleFilterC()
     {
     	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiC());
-        candTable.setItems(model);
+    	refreshTable();
     }
     
     public void handleRemoveFilter()
     {
     	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.getCandidati());
-        candTable.setItems(model);
+    	refreshTable();
     }    
 
     static void showMessage(Alert.AlertType type, String header, String text){
@@ -134,6 +168,7 @@ public class CandidatController implements Observer<Candidat> {
 		} catch (ValidatorException | sun.security.validator.ValidatorException e1) {
             showErrorMessage(e1.getMessage());
         }
+		refreshTable();
     }
     
     public void save(ActionEvent e){

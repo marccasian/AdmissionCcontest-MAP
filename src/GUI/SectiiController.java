@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,7 +40,10 @@ public class SectiiController implements Observer<Sectie> {
     private TableColumn<Sectie, String> nameColumn;
     @FXML
     private TableColumn<Sectie, String> nrLocColumn;
-
+    @FXML
+    private Pagination pagination ;
+    
+    final private int rowsPerPage = 15;
     
 	public SectiiController(){
       
@@ -48,7 +52,19 @@ public class SectiiController implements Observer<Sectie> {
 	public void setService(ControllerSectie sectieService) {
         this.service=sectieService;
         this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)sectieService.getSectii());
-        sectTable.setItems(model);
+        this.pagination.setPageCount(getNrPages());
+        this.pagination.setCurrentPageIndex(0);
+        updateTable(sectTable, 0);
+    }
+	
+	private void updateTable(TableView<Sectie> table, Integer index) {
+		this.pagination.setPageCount(getNrPages());
+        int start = index * rowsPerPage ;
+        int end = start + rowsPerPage;
+        if (start + rowsPerPage > this.model.size()){
+        	end = this.model.size();
+        }
+        table.getItems().setAll(FXCollections.observableArrayList(this.model.subList(start, end)));
     }
 	
 	 /**
@@ -59,13 +75,29 @@ public class SectiiController implements Observer<Sectie> {
     private void initialize() {
     	nameColumn.setCellValueFactory(new PropertyValueFactory<Sectie, String>("nume"));
     	nrLocColumn.setCellValueFactory(new PropertyValueFactory<Sectie, String>("nrLoc"));
+    	pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> updateTable(sectTable, newIndex.intValue()));
     }
+    
+    private int getNrPages(){
+    	int last_pag = 0;
+        if (this.model.size() % rowsPerPage != 0){
+        	last_pag = 1;
+        }
+        return this.model.size() / rowsPerPage + last_pag;
+    }
+    
+    private void refreshTable(){
+    	this.pagination.setPageCount(getNrPages());
+        updateTable(sectTable, pagination.getCurrentPageIndex());  
+    }
+    
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void update(Observable<Sectie> observable) {
             ControllerSectie s=(ControllerSectie)observable;
             model.setAll((List)s.getSectii());
+            refreshTable();
     }
 
     public void handleUpdateSectie(){
@@ -117,6 +149,7 @@ public class SectiiController implements Observer<Sectie> {
 		} catch (ValidatorException | sun.security.validator.ValidatorException e1) {
             showErrorMessage(e1.getMessage());
         }
+    	refreshTable();
     }
     
     public void save(ActionEvent e){
@@ -176,19 +209,19 @@ public class SectiiController implements Observer<Sectie> {
     public void handleFilterMoreThan100()
     {
     	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectii100());
-        sectTable.setItems(model);
+    	refreshTable();
     }
     
     public void handleFilterS()
     {
     	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectiiS());
-        sectTable.setItems(model);
+    	refreshTable();
     }
     
     public void handleRemoveFilter()
     {
     	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.getSectii());
-        sectTable.setItems(model);
+    	refreshTable();
     }    
     
 }

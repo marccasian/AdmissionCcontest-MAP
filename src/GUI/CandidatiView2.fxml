@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CandidatController">
+   <children>
+      <BorderPane prefHeight="655.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../imgs/studs.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="150.0" prefWidth="550.0" text="Candidati" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <left>
+            <VBox fx:id="leftVbox" prefHeight="592.0" prefWidth="380.0">
+               <children>
+                  <TableView fx:id="candTable" prefHeight="402.0" prefWidth="380.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" prefWidth="194.0" text="Nume" />
+                      <TableColumn fx:id="telColumn" prefWidth="180.0" text="Telefon" />
+                    </columns>
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </TableView>
+                  <Pagination fx:id="pagination" prefHeight="76.0" prefWidth="380.0" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <VBox alignment="CENTER" prefHeight="410.0" prefWidth="210.0" spacing="80.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="buttonAddC" mnemonicParsing="false" onAction="#handleAddCandidat" prefHeight="50.0" prefWidth="150.0" text="Add" />
+                  <Button fx:id="buttonDelC" mnemonicParsing="false" onAction="#handleDeleteCandidat" prefHeight="50.0" prefWidth="150.0" text="Delete" />
+                  <Button fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateCandidat" prefHeight="50.0" prefWidth="150.0" text="Edit" />
+                  <Button fx:id="buttonModifC1" mnemonicParsing="false" onAction="#handleFilterMajori" prefHeight="50.0" prefWidth="150.0" text="Filtrare candidati majori" />
+                  <Button fx:id="buttonModifC2" mnemonicParsing="false" onAction="#handleFilterC" prefHeight="50.0" prefWidth="150.0" text="Filtrare candidati C" />
+                  <Button fx:id="buttonModifC21" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="50.0" prefWidth="150.0" text="Eliminare filtru" />
+               </children>
+               <padding>
+                  <Insets bottom="40.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
