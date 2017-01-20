@@ -123,7 +123,7 @@ public class ControllerSectie implements Observable<Sectie>{
 		{
 			notifyObservers();
 		}
-		saveRepo();
+		//saveRepo();
 		return s;
 	}
 	
@@ -136,7 +136,7 @@ public class ControllerSectie implements Observable<Sectie>{
 		{
 			notifyObservers();
 		}
-		saveRepo();
+		//saveRepo();
 		return c;
 	}
 	
@@ -151,7 +151,7 @@ public class ControllerSectie implements Observable<Sectie>{
 		{
 			notifyObservers();
 		}
-		saveRepo();
+		//saveRepo();
 		return c;
 	}
 }

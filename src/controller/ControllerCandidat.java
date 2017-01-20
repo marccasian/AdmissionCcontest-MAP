@@ -126,7 +126,7 @@ public class ControllerCandidat implements Observable<Candidat>{
 		{
 			notifyObservers();
 		}
-		saveRepo();
+		//saveRepo();
 		return s;
 	}
 	
@@ -139,7 +139,7 @@ public class ControllerCandidat implements Observable<Candidat>{
 		{
 			notifyObservers();
 		}
-		saveRepo();
+		//saveRepo();
 		return c;
 	}
 	
@@ -154,7 +154,7 @@ public class ControllerCandidat implements Observable<Candidat>{
 		{
 			notifyObservers();
 		}
-		saveRepo();
+		//saveRepo();
 		return c;
 	}
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="565.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="120.0" fitWidth="244.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../imgs/casi.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="150.0" prefWidth="550.0" text="About" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <left>
+            <VBox />
+         </left>
+         <center>
+            <VBox alignment="CENTER" prefHeight="410.0" prefWidth="210.0" spacing="80.0" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="40.0" />
+               </padding>
+               <children>
+                  <Text fill="#236f48" strokeType="OUTSIDE" strokeWidth="0.0" text="    Acest proiect facultativ a fost realizat de catre  Casian Nicolae Marc, student in anul II  la Facultatea de Matematica si Informatica, sectia Informatica Romana, din cadrul Universitatii Babes Bolyai, avand ca indrumatori pe: Lect. CHISALITA-CRETU Camelia (Laborator) si Lect. SERBAN Camelia (Curs+Seminar)." textAlignment="JUSTIFY" wrappingWidth="560.13671875">
+                     <font>
+                        <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -68,12 +68,10 @@ public class Main extends Application{
 	@SuppressWarnings("unused")
 	public void initStartPageView() {
         try {
-            // Load student view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/GUI/StartPage.fxml"));
             centerLayout = (AnchorPane) loader.load();
             rootLayout.setCenter(centerLayout);
-            //set the service and the model for controller class
             RootController rootCtrl=loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,12 +80,10 @@ public class Main extends Application{
 	
 	public void initCandidatViewLayout() {
         try {
-            // Load student view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/GUI/CandidatiView2.fxml"));
             centerLayout = (AnchorPane) loader.load();
             rootLayout.setCenter(centerLayout);
-            //set the service and the model for controller class
             CandidatController viewCtrl=loader.getController();
             viewCtrl.setService(candidatService);
             candidatService.addObserver(viewCtrl);
@@ -96,14 +92,23 @@ public class Main extends Application{
         }
     }
 	
+	public void initAboutUsViewLayout() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/GUI/AboutUsView.fxml"));
+            centerLayout = (AnchorPane) loader.load();
+            rootLayout.setCenter(centerLayout);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
 	public void initSectiiViewLayout() {
         try {
-            // Load student view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/GUI/SectiiView.fxml"));
             centerLayout = (AnchorPane) loader.load();
             rootLayout.setCenter(centerLayout);
-            //set the service and the model for controller class
             SectiiController viewCtrl=loader.getController();
             viewCtrl.setService(sectieService);
             sectieService.addObserver(viewCtrl);
@@ -114,12 +119,10 @@ public class Main extends Application{
 	
 	public void initInscrieriViewLayout() {
         try {
-            // Load student view.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/GUI/InscrieriView.fxml"));
             centerLayout = (AnchorPane) loader.load();
             rootLayout.setCenter(centerLayout);
-            //set the service and the model for controller class
             InscrieriController viewCtrl=loader.getController();
             viewCtrl.setService(inscriereService,candidatService,sectieService);
             inscriereService.addObserver(viewCtrl);
@@ -131,6 +134,7 @@ public class Main extends Application{
 	public void save(){
 		sectieService.saveRepo();
 		candidatService.saveRepo();
+		inscriereService.saveRepo();
 	}
 	
 	public void close(){

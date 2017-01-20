@@ -50,6 +50,12 @@ public class RootController {
     }
     
     @FXML
+    public void handleAboutUs()
+    {
+        mainApp.initAboutUsViewLayout();
+    }
+    
+    @FXML
     public void handleClose()
     {
         mainApp.close();
