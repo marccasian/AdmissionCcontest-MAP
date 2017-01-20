@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -45,6 +46,8 @@ public class InscrieriController implements Observer<Inscriere> {
     private TableColumn<Inscriere, String> sectieColumn;
     @FXML
     private Pagination pagination ;
+    @FXML
+    private TextField itemsNrTop;
     
     final private int rowsPerPage = 15;
 
@@ -210,9 +213,11 @@ public class InscrieriController implements Observer<Inscriere> {
             dialogStage.setScene(scene);
 
             RaportController raportController= loader.getController();
-            raportController.setService(service,serviceC,serviceS,dialogStage);
-
-            dialogStage.show();
+            Integer nr = getTopNrItems();
+            if (nr > 0){
+            	raportController.setService(service,serviceC,serviceS,dialogStage,nr);
+            	dialogStage.show();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -220,7 +225,18 @@ public class InscrieriController implements Observer<Inscriere> {
     
     }
     
-    public void showInscriereEditDialog(Inscriere c) {
+    private Integer getTopNrItems() {
+    	String nrs = itemsNrTop.getText();
+    	Integer nr = -1;
+    	try{
+    		nr = Integer.parseInt(nrs);
+    	}catch (NumberFormatException e) {
+        	showErrorMessage("Numarul de intrari in raport trebuie sa fie numar natural!");
+        }
+    	
+    	return nr;
+	}
+	public void showInscriereEditDialog(Inscriere c) {
 //        try {
 //            // create a new stage for the popup dialog.
 //            FXMLLoader loader = new FXMLLoader();

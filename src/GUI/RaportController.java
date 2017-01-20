@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import domain.Inscriere;
 import domain.RaportItem;
+import domain.Sectie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -37,6 +39,7 @@ public class RaportController implements Observer<Inscriere> {
     ControllerSectie serviceS;
     ControllerCandidat serviceC;
     Stage dialogStage;
+    Integer nr;
     
     @FXML
     private TableView<RaportItem> raportTable;
@@ -44,21 +47,21 @@ public class RaportController implements Observer<Inscriere> {
     private TableColumn<RaportItem, Integer> numarCandidatiColumn;
     @FXML
     private TableColumn<RaportItem, String> sectieColumn;
-
     
 	public RaportController(){
       
     }
 	//
-	public void setService(ControllerInscrieri inscriereService, ControllerCandidat servic, ControllerSectie servis, Stage stage) {
+	public void setService(ControllerInscrieri inscriereService, ControllerCandidat servic, ControllerSectie servis, Stage stage, Integer nr) {
         this.service=inscriereService;
         this.serviceS=servis;
         this.serviceC=servic;
         this.dialogStage = stage;
-        this.model= FXCollections.observableArrayList((Collection<? extends RaportItem>)inscriereService.getRaport());
+        this.nr = nr;
+        this.model= FXCollections.observableArrayList((Collection<? extends RaportItem>)inscriereService.getRaport(this.nr));
         raportTable.setItems(model);
     }
-	
+
 	 /**
      * Initializes the controller class. This method is automatically called
      * after the fxml file has been loaded.
@@ -72,8 +75,8 @@ public class RaportController implements Observer<Inscriere> {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void update(Observable<Inscriere> observable) {
-		ControllerInscrieri s=(ControllerInscrieri)observable;
-            model.setAll((List)s.getRaport());
+			ControllerInscrieri s=(ControllerInscrieri)observable;
+            model.setAll((List)s.getRaport(this.nr));
     }
 
     static void showMessage(Alert.AlertType type, String header, String text){
@@ -103,9 +106,10 @@ public class RaportController implements Observer<Inscriere> {
     {
     	exportToPDF();
     }
+    
 	private void exportToPDF() {
 		try{
-			String path = this.service.exportToPDF("Top3.pdf");
+			String path = this.service.exportToPDF("Top.pdf",this.nr);
 			showMessage(Alert.AlertType.INFORMATION, "Raport exportat cu succes", "Path to pdf: "+ path);
 		}
 		catch (Exception e){

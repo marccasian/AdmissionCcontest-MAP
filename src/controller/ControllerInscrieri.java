@@ -141,7 +141,7 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 		}
 	}
 
-	public Collection<? extends RaportItem> getRaport() {
+	public Collection<? extends RaportItem> getRaport(Integer nr) {
 		ArrayList<domain.RaportItem> rap = new ArrayList<domain.RaportItem>();
 		for (Inscriere i: getInscrieri()){
 			Boolean ok = false; 
@@ -160,18 +160,18 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 		Comparator<RaportItem> com = new comp();
 		rap.sort(com);
 		ArrayList<domain.RaportItem> result = new ArrayList<domain.RaportItem>();
-		for (int i = 0; i < 3; i++ ){
+		for (int i = 0;  i < nr && i < rap.size(); i++ ){
 			result.add(new RaportItem());
 		}
-		for (int i = 0; i < 3 && i < rap.size(); i++ ){
+		for (int i = 0; i < nr && i < rap.size(); i++ ){
 			result.set(i, rap.get(i));
 		}
 		return result;
 	}
 
-	public String exportToPDF(String fileName) {
+	public String exportToPDF(String fileName, Integer nr) {
 		Document document = new Document();
-		Collection<? extends RaportItem> rap = getRaport();
+		Collection<? extends RaportItem> rap = getRaport(nr);
   		try
   		{
 	     	PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -179,10 +179,13 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 	     	document.addAuthor("Casian Nicolae Marc");
 	     	document.addCreationDate();
 	     	document.addCreator("Casian Nicolae Marc");
-	     	document.addTitle("Top 3 Sectii");
-	     	document.addSubject("Raport: top 3 cele mai solicitate sectii");
+	     	String title = String.format("Top %s Sectii",nr.toString());
+	     	document.addTitle(title);
+	     	String subject = String.format("Raport: top %s cele mai solicitate sectii", nr.toString());
+	     	document.addSubject(subject);
 	     	Font fontbold = FontFactory.getFont("Times-Roman", 20, Font.BOLD);
-	     	Paragraph p = new Paragraph("Top 3 sectii", fontbold);
+	     	String ps = String.format("Top %s sectii", nr.toString());
+	     	Paragraph p = new Paragraph(ps, fontbold);
 	     	p.setAlignment(Element.ALIGN_CENTER);
 	     			
 	     	document.add(p); 

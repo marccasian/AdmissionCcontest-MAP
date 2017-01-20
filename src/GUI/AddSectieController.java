@@ -71,7 +71,7 @@ public class AddSectieController {
         } catch (ValidatorException | sun.security.validator.ValidatorException e1) {
             showErrorMessage(e1.getMessage());
         } catch (NumberFormatException e) {
-        	showErrorMessage("Numarul de locuri trebuie sa fie numer natural!");
+        	showErrorMessage("Numarul de locuri trebuie sa fie numar natural!");
         }
         catch (Exception e) {
         	showErrorMessage(e.getMessage());
