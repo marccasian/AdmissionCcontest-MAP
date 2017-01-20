@@ -15,16 +15,30 @@ import utils.Observer;
 public class ControllerCandidat implements Observable<Candidat>{
 	private repository.RepoCandidatiXML _repoC;
 	
+	public repository.RepoCandidatiXML get_repoC() {
+		return _repoC;
+	}
+
+	public void set_repoC(repository.RepoCandidatiXML _repoC) {
+		this._repoC = _repoC;
+	}
+
 	private domain.CandidateValidator cValidator;
 	
+	public domain.CandidateValidator getcValidator() {
+		return cValidator;
+	}
+
+	public void setcValidator(domain.CandidateValidator cValidator) {
+		this.cValidator = cValidator;
+	}
+
 	protected List <Observer<Candidat>> observers = new ArrayList<Observer<Candidat>>();
 	
 	Predicate<Candidat> majori=c->{return ((domain.Candidat) c).getVarsta()>=18;};
     Predicate<Candidat> startWithC=c->((domain.Candidat) c).getNume().startsWith("C");
 
 	public ControllerCandidat(){
-		_repoC = new repository.RepoCandidatiXML("Candidati.xml");
-		cValidator = new domain.CandidateValidator();
 	}
 	
 	public void adaugaCandidat(Integer id, String nume, String tel,

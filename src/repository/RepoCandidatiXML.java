@@ -25,16 +25,23 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class RepoCandidatiXML extends RepoCandidati{
-private String fName;
-	
-	public RepoCandidatiXML(String fName) {
-		
-		this.fName=fName;
+	public String file;	
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public RepoCandidatiXML(String file) {
+		this.file = file;
 		loadData();
 	}
 
     public void loadData() {
-        try (InputStream input = new FileInputStream(fName)) {
+        try (InputStream input = new FileInputStream(file)) {
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             XMLStreamReader reader = inputFactory.createXMLStreamReader(input);
             readFromXml(reader);
@@ -145,7 +152,7 @@ private String fName;
             e.printStackTrace();
         }
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new File(fName));
+        StreamResult result = new StreamResult(new File(file));
 
         try {
             transformer.transform(source, result);

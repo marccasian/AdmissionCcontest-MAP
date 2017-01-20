@@ -30,10 +30,17 @@ import utils.Observer;
 public class ControllerInscrieri implements Observable<Inscriere>{
 	private repository.RepoInscrieriXML _repoI;
 	
+	public repository.RepoInscrieriXML get_repoI() {
+		return _repoI;
+	}
+
+	public void set_repoI(repository.RepoInscrieriXML _repoI) {
+		this._repoI = _repoI;
+	}
+
 	protected List <Observer<Inscriere>> observers = new ArrayList<Observer<Inscriere>>();
 	
 	public ControllerInscrieri(){
-		_repoI = new repository.RepoInscrieriXML("Inscrieri.XML");
 	}
 	
 	public void adaugaInscriere(Integer id, Candidat c, Sectie s) throws ValidatorException, sun.security.validator.ValidatorException{

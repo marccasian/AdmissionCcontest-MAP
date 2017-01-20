@@ -27,7 +27,7 @@ import java.io.InputStream;
 
 public class RepoSectiiXML extends RepoSectii{
 	
-	private String fName;
+	public String fName;
 	
 	public RepoSectiiXML(String fName) {
 		

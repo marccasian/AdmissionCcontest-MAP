@@ -14,16 +14,29 @@ import utils.Observer;
 
 public class ControllerSectie implements Observable<Sectie>{
 	private repository.RepoSectiiXML _repoS;
+	public repository.RepoSectiiXML get_repoS() {
+		return _repoS;
+	}
+
+	public void set_repoS(repository.RepoSectiiXML _repoS) {
+		this._repoS = _repoS;
+	}
+
 	private domain.SectieValidator sValidator;
+	public domain.SectieValidator getsValidator() {
+		return sValidator;
+	}
+
+	public void setsValidator(domain.SectieValidator sValidator) {
+		this.sValidator = sValidator;
+	}
+
 	protected List <Observer<Sectie>> observers = new ArrayList<Observer<Sectie>>();
 	
     Predicate<Sectie> moreThan100 = s->{return s.getNrLoc()>=100;};
     Predicate<Sectie> startWithS = s->s.getNume().startsWith("S");
 	
 	public ControllerSectie(){
-		_repoS = new repository.RepoSectiiXML("Sectii.xml");
-		
-		sValidator = new domain.SectieValidator();
 	}
 	
 	public void adaugaSectie(Integer id, String nume, Integer nrLoc) throws sun.security.validator.ValidatorException, ValidatorException{

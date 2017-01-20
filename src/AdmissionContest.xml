@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="_repoC" class="repository.RepoCandidatiXML">
+		<constructor-arg type="java.lang.String" value="Candidati.xml" />
+	</bean>
+	<bean id="cValidator" class="domain.CandidateValidator"></bean>
+	<bean id="candidatService" class="controller.ControllerCandidat">
+		<property name="_repoC" ref="_repoC"></property>
+		<property name="cValidator" ref="cValidator"></property>
+	</bean>
+	
+	<bean id="_repoS" class="repository.RepoSectiiXML">
+		<constructor-arg type="java.lang.String" value="Sectii.xml" />
+	</bean>
+	<bean id="sValidator" class="domain.SectieValidator"></bean>
+	<bean id="sectieService" class="controller.ControllerSectie">
+		<property name="_repoS" ref="_repoS"></property>
+		<property name="sValidator" ref="sValidator"></property>
+	</bean>
+	
+	<bean id="_repoI" class="repository.RepoInscrieriXML">
+		<constructor-arg type="java.lang.String" value="Inscrieri.xml" />
+	</bean>
+	<bean id="inscriereService" class="controller.ControllerInscrieri">
+		<property name="_repoI" ref="_repoI"></property>
+	</bean>
+</beans>

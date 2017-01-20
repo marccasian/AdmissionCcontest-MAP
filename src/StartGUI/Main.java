@@ -2,6 +2,9 @@ package StartGUI;
 
 import java.io.IOException;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import GUI.CandidatController;
 import GUI.InscrieriController;
 import GUI.RootController;
@@ -24,11 +27,11 @@ public class Main extends Application{
 	BorderPane rootLayout;
 	AnchorPane centerLayout;
 	Stage primaryStage;
+	ApplicationContext context = new ClassPathXmlApplicationContext(Main.class.getResource("/AdmissionContest.xml").toString());;
+	ControllerCandidat candidatService= (ControllerCandidat) context.getBean("candidatService"); // = new ControllerCandidat();// = new ControllerCandidat();
+	ControllerSectie sectieService = (ControllerSectie) context.getBean("sectieService"); // new ControllerSectie();
+	ControllerInscrieri inscriereService = (ControllerInscrieri) context.getBean("inscriereService");;
 	
-	ControllerCandidat candidatService = new ControllerCandidat();
-	ControllerSectie sectieService = new ControllerSectie();
-	ControllerInscrieri inscriereService = new ControllerInscrieri();
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
