@@ -82,7 +82,6 @@ public class ControllerSectie implements Observable<Sectie>{
 				.stream()
 			    .filter(prd)
 			    .collect(Collectors.toList());
-		//Collections.sort(filtrata,(f1,f2)->-(int)(f1.getGreutate()-f2.getGreutate()));
 		return filtrata;
 	}
 	
@@ -137,7 +136,6 @@ public class ControllerSectie implements Observable<Sectie>{
 		{
 			notifyObservers();
 		}
-		//saveRepo();
 		return s;
 	}
 	
@@ -150,7 +148,6 @@ public class ControllerSectie implements Observable<Sectie>{
 		{
 			notifyObservers();
 		}
-		//saveRepo();
 		return c;
 	}
 	
@@ -165,7 +162,6 @@ public class ControllerSectie implements Observable<Sectie>{
 		{
 			notifyObservers();
 		}
-		//saveRepo();
 		return c;
 	}
 }

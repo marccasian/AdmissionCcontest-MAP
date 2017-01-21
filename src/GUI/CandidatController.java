@@ -202,7 +202,6 @@ public class CandidatController implements Observer<Candidat> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Candidate");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 
@@ -227,7 +226,6 @@ public class CandidatController implements Observer<Candidat> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Candidate");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 

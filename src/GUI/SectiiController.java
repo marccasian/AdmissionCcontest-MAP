@@ -174,7 +174,6 @@ public class SectiiController implements Observer<Sectie> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Sectie");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 
@@ -199,7 +198,6 @@ public class SectiiController implements Observer<Sectie> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Sectie");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 

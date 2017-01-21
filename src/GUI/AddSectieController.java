@@ -31,8 +31,6 @@ public class AddSectieController {
     public void setService(ControllerSectie service,  Stage stage) {
         this.service = service;
         this.dialogStage=stage;
-        //textFieldId.setEditable(false);
-        //textFieldId.setAccessibleText("Se va genera automat");
     }
     
     public Sectie extractSectie(){

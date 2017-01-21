@@ -20,7 +20,6 @@ public class Main extends Application {
         stage.setTitle("Admission Contest");
         stage.setScene(scene);
         stage.show();
-        //stage.setOnCloseRequest();
     }
 
     public static void main(String[] args) {

@@ -55,7 +55,7 @@ public class InscrieriController implements Observer<Inscriere> {
 	public InscrieriController(){
       
     }
-	//
+
 	public void setService(ControllerInscrieri inscriereService, ControllerCandidat servic, ControllerSectie servis) {
         this.service=inscriereService;
         this.serviceS=servis;
@@ -107,18 +107,6 @@ public class InscrieriController implements Observer<Inscriere> {
 		ControllerInscrieri s=(ControllerInscrieri)observable;
             model.setAll((List)s.getInscrieri());
             refreshTable();
-    }
-    
-    public void handleUpdateInscriere(){
-        try {
-        	Inscriere c= inscrieriTable.getSelectionModel().getSelectedItem();
-        	if (null != c)
-        		showInscriereEditDialog(c);
-        	else showErrorMessage("Nu ati selectat nici un candidat!");
-        	
-        } catch (NumberFormatException e) {
-        	showErrorMessage("ID si Varsta trebuie sa fie numere naturale!");
-        }
     }
 
     public void handleAddInscriere()
@@ -182,7 +170,6 @@ public class InscrieriController implements Observer<Inscriere> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Add Inscriere");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 
@@ -208,7 +195,6 @@ public class InscrieriController implements Observer<Inscriere> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Top 3 sectii");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            //dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
 
@@ -240,29 +226,5 @@ public class InscrieriController implements Observer<Inscriere> {
     	
     	return nr;
 	}
-    
-	public void showInscriereEditDialog(Inscriere c) {
-//        try {
-//            // create a new stage for the popup dialog.
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(InscrieriController.class.getResource("EditInscriereView.fxml"));
-//            AnchorPane root = (AnchorPane) loader.load();
-//
-//            // Create the dialog Stage.
-//            Stage dialogStage = new Stage();
-//            dialogStage.setTitle("Edit Inscrieree");
-//            dialogStage.initModality(Modality.WINDOW_MODAL);
-//            //dialogStage.initOwner(primaryStage);
-//            Scene scene = new Scene(root);
-//            dialogStage.setScene(scene);
-//
-//            EditInscriereController editInscriereController= loader.getController();
-//            editInscriereController.setService(service, dialogStage, c);
-//
-//            dialogStage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    }
+
 }

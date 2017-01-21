@@ -59,17 +59,6 @@ public class CandidatView {
         AnchorPane.setTopAnchor(l,20d);
         AnchorPane.setRightAnchor(l,100d);
         anchorPane.getChildren().add(l);
-        /*
-        Image img = new Image("logo.gif");
-        ImageView imgView = new ImageView(img);
-        imgView.setFitHeight(100);
-        imgView.setFitWidth(100);
-        imgView.setPreserveRatio(true);
-
-        AnchorPane.setLeftAnchor(imgView,20d);
-        AnchorPane.setRightAnchor(imgView,10d);
-        anchorPane.getChildren().add(imgView);
-		*/
         return anchorPane;
     }
 

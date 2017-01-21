@@ -116,7 +116,6 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 		{
 			notifyObservers();
 		}
-		//saveRepo();
 		return c;
 	}
 	
@@ -130,7 +129,6 @@ public class ControllerInscrieri implements Observable<Inscriere>{
 		{
 			notifyObservers();
 		}
-		//saveRepo();
 		return c;
 	}
 	
