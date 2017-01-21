@@ -28,24 +28,20 @@ public class Main extends Application{
 	AnchorPane centerLayout;
 	Stage primaryStage;
 	ApplicationContext context = new ClassPathXmlApplicationContext(Main.class.getResource("/AdmissionContest.xml").toString());;
-	ControllerCandidat candidatService= (ControllerCandidat) context.getBean("candidatService"); // = new ControllerCandidat();// = new ControllerCandidat();
-	ControllerSectie sectieService = (ControllerSectie) context.getBean("sectieService"); // new ControllerSectie();
+	ControllerCandidat candidatService= (ControllerCandidat) context.getBean("candidatService"); 
+	ControllerSectie sectieService = (ControllerSectie) context.getBean("sectieService"); 
 	ControllerInscrieri inscriereService = (ControllerInscrieri) context.getBean("inscriereService");;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
 		this.primaryStage=primaryStage;
         this.primaryStage.setTitle("Admission Contest");
 
         initRootView();
-        //initStartPageView();
-
 	}
 	
 	public void initRootView() {
@@ -57,7 +53,7 @@ public class Main extends Application{
             RootController rootController=loader.getController();
             rootController.setMainApplic(this);
             // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout,660,900);
+            Scene scene = new Scene(rootLayout,750,900);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

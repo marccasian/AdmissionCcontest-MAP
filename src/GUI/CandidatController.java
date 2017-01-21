@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -43,6 +44,13 @@ public class CandidatController implements Observer<Candidat> {
     private TableColumn<Candidat, String> telColumn;
     @FXML
     private Pagination pagination ;
+    
+    @FXML
+    private TextField aniFilterTextField;
+    
+    @FXML
+    private TextField numeFilterTextField;
+    
     
     final private int rowsPerPage = 15;
     
@@ -117,16 +125,24 @@ public class CandidatController implements Observer<Candidat> {
     }
     
     
-    public void handleFilterMajori()
+    public void handleFilterAni()
     {
-    	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiMajori());
-    	refreshTable();
+    	Integer nr = getVarstaForFilter();
+    	if (nr >= 0){
+    		this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiAni(nr));
+        	refreshTable();
+    	}
+    	aniFilterTextField.setText("");
     }
     
-    public void handleFilterC()
+    public void handleFilterNume()
     {
-    	this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiC());
-    	refreshTable();
+    	String nu = getNameForFilter();
+    	if (nu != ""){
+    		this.model= FXCollections.observableArrayList((Collection<? extends Candidat>)this.service.filterCandidatiNume(nu));
+    		refreshTable();
+    	}
+    	numeFilterTextField.setText("");
     }
     
     public void handleRemoveFilter()
@@ -224,4 +240,25 @@ public class CandidatController implements Observer<Candidat> {
             e.printStackTrace();
         }
     }
+    
+    private Integer getVarstaForFilter() {
+    	String nrs = aniFilterTextField.getText();
+    	Integer nr = -1;
+    	try{
+    		nr = Integer.parseInt(nrs);
+    		if (nr >= 0){
+    			return nr;
+    		}
+    		throw new NumberFormatException();
+    	}catch (NumberFormatException e) {
+        	showErrorMessage("Varsta trebuie sa fie numar natural!");
+        }
+    	
+    	return nr;
+	}
+    
+    private String getNameForFilter() {
+    	String nrs = numeFilterTextField.getText();
+    	return nrs;
+	}
 }

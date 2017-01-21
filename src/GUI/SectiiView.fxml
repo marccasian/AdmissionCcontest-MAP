@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="sectiiAnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SectiiController">
+<AnchorPane id="sectiiAnchorPane" prefHeight="700.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SectiiController">
    <children>
-      <BorderPane prefHeight="565.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="700.0" prefWidth="735.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -32,18 +32,51 @@
             </HBox>
          </top>
          <center>
-            <VBox alignment="CENTER" prefHeight="410.0" prefWidth="210.0" spacing="80.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="677.0" prefWidth="345.0" spacing="20.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <Button id="addSectieBtn" fx:id="buttonAddS" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddSectie" prefHeight="50.0" prefWidth="150.0" text="Add" />
-                  <Button id="delSectieBtn" fx:id="buttonDelS" mnemonicParsing="false" onAction="#handleDeleteSectie" prefHeight="50.0" prefWidth="150.0" text="Delete" />
-                  <Button id="editSectieBtn" fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateSectie" prefHeight="50.0" prefWidth="150.0" text="Edit" />
-                  <Button id="editSectieBtn" fx:id="buttonModifC1" mnemonicParsing="false" onAction="#handleFilterMoreThan100" prefHeight="41.0" prefWidth="150.0" text="Filtrate sectii mari" />
-                  <Button id="editSectieBtn" fx:id="buttonModifC2" mnemonicParsing="false" onAction="#handleFilterS" prefHeight="50.0" prefWidth="150.0" text="Filtrare sectii S" />
-                  <Button id="editSectieBtn" fx:id="buttonModifC3" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="50.0" prefWidth="150.0" text="Eliminare filtru" />
+                  <Button id="addSectieBtn" fx:id="buttonAddS" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAddSectie" prefHeight="30.0" prefWidth="150.0" text="Add" />
+                  <Button id="delSectieBtn" fx:id="buttonDelS" mnemonicParsing="false" onAction="#handleDeleteSectie" prefHeight="30.0" prefWidth="150.0" text="Delete" />
+                  <Button id="editSectieBtn" fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateSectie" prefHeight="30.0" prefWidth="150.0" text="Edit" />
+                  <Label text="Filtrare sectii dupa numarul de locuri" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Nr.Loc. &gt;= " textFill="#236f48">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nrLocFilterTextField" prefHeight="25.0" prefWidth="105.0" promptText="Ex: 100" />
+                        <Button fx:id="buttonModifC11" mnemonicParsing="false" onAction="#handleFilterNrLoc" prefHeight="25.0" prefWidth="102.0" text="Filtrare" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+                  <Label layoutX="61.0" layoutY="325.0" text="Filtrare sectii dupa numarul de locuri" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="347.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Numele contine:" textFill="#236f48">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="numeFilterTextField" prefHeight="25.0" prefWidth="94.0" promptText="Ex UBB" />
+                        <Button fx:id="buttonModifC111" mnemonicParsing="false" onAction="#handleFilterNume" prefHeight="25.0" prefWidth="102.0" text="Filtrare" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+                  <Button id="editSectieBtn" fx:id="buttonModifC3" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="30.0" prefWidth="150.0" text="Eliminare filtru" />
                </children>
-               <padding>
-                  <Insets bottom="40.0" />
-               </padding>
             </VBox>
          </center>
          <left>
@@ -52,7 +85,7 @@
                   <TableView id="sectiiTable" fx:id="sectTable" prefHeight="395.0" prefWidth="380.0" BorderPane.alignment="CENTER">
                     <columns>
                       <TableColumn id="nameSColumn" fx:id="nameColumn" prefWidth="228.0" text="Nume Sectie" />
-                      <TableColumn id="nrCandColumn" fx:id="nrLocColumn" prefWidth="149.0" text="Numar Candidati" />
+                      <TableColumn id="nrCandColumn" fx:id="nrLocColumn" prefWidth="149.0" text="Numar Locuri" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

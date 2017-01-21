@@ -92,11 +92,25 @@ public class ControllerSectie implements Observable<Sectie>{
 		return filt;
 	}
 	
+	public List<Sectie> filterSectiiNrLoc(Integer nr){
+		Predicate<Sectie> moreThanNrLoc = s->{return s.getNrLoc()>=nr;};
+		List<Sectie> filt = filtrare((List<Sectie>)getSectii(), moreThanNrLoc);
+		Collections.sort(filt,(f1,f2)->(int)(f1.getNrLoc()-f2.getNrLoc()));
+		return filt;
+	}
+	
 	public List<Sectie> filterSectiiS(){
 		List<Sectie> filt = filtrare((List<Sectie>)getSectii(), startWithS);
 		Collections.sort(filt,(f1,f2)->(f1.getNume().compareTo(f2.getNume())));
 		return filt;
 	}	
+	
+	public List<Sectie> filterSectiiNume(String nu){
+		Predicate<Sectie> numeFilter = s->s.getNume().contains(nu);
+		List<Sectie> filt = filtrare((List<Sectie>)getSectii(), numeFilter);
+		Collections.sort(filt,(f1,f2)->(f1.getNume().compareTo(f2.getNume())));
+		return filt;
+	}
 	
 	@Override
 	public void addObserver(Observer<Sectie> o) {

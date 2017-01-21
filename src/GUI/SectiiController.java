@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -42,6 +43,12 @@ public class SectiiController implements Observer<Sectie> {
     private TableColumn<Sectie, String> nrLocColumn;
     @FXML
     private Pagination pagination ;
+    
+    @FXML
+    private TextField nrLocFilterTextField;
+    
+    @FXML
+    private TextField numeFilterTextField;
     
     final private int rowsPerPage = 15;
     
@@ -206,16 +213,24 @@ public class SectiiController implements Observer<Sectie> {
         }
     }
     
-    public void handleFilterMoreThan100()
+    public void handleFilterNrLoc()
     {
-    	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectii100());
-    	refreshTable();
+    	Integer nr = getNrLocForFilter();
+    	if (nr >= 0){
+    		this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectiiNrLoc(nr));
+    		refreshTable();
+    	}
+    	nrLocFilterTextField.setText("");
     }
     
-    public void handleFilterS()
+    public void handleFilterNume()
     {
-    	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectiiS());
-    	refreshTable();
+    	String nu = getNameForFilter();
+    	if (nu != ""){
+    		this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.filterSectiiNume(nu));
+    		refreshTable();
+    	}
+    	numeFilterTextField.setText("");
     }
     
     public void handleRemoveFilter()
@@ -223,5 +238,26 @@ public class SectiiController implements Observer<Sectie> {
     	this.model= FXCollections.observableArrayList((Collection<? extends Sectie>)this.service.getSectii());
     	refreshTable();
     }    
+    
+    private Integer getNrLocForFilter() {
+    	String nrs = nrLocFilterTextField.getText();
+    	Integer nr = -1;
+    	try{
+    		nr = Integer.parseInt(nrs);
+    		if (nr >= 0){
+    			return nr;
+    		}
+    		throw new NumberFormatException();
+    	}catch (NumberFormatException e) {
+        	showErrorMessage("Numarul de locuri trebuie sa fie numar natural!");
+        }
+    	
+    	return nr;
+	}
+    
+    private String getNameForFilter() {
+    	String nrs = numeFilterTextField.getText();
+    	return nrs;
+	}
     
 }

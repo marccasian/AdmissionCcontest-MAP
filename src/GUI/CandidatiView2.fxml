@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CandidatController">
+<AnchorPane prefHeight="720.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CandidatController">
    <children>
       <BorderPane prefHeight="655.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -56,18 +56,57 @@
             </VBox>
          </left>
          <center>
-            <VBox alignment="CENTER" prefHeight="410.0" prefWidth="210.0" spacing="80.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="410.0" prefWidth="210.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="buttonAddC" mnemonicParsing="false" onAction="#handleAddCandidat" prefHeight="50.0" prefWidth="150.0" text="Add" />
-                  <Button fx:id="buttonDelC" mnemonicParsing="false" onAction="#handleDeleteCandidat" prefHeight="50.0" prefWidth="150.0" text="Delete" />
-                  <Button fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateCandidat" prefHeight="50.0" prefWidth="150.0" text="Edit" />
-                  <Button fx:id="buttonModifC1" mnemonicParsing="false" onAction="#handleFilterMajori" prefHeight="50.0" prefWidth="150.0" text="Filtrare candidati majori" />
-                  <Button fx:id="buttonModifC2" mnemonicParsing="false" onAction="#handleFilterC" prefHeight="50.0" prefWidth="150.0" text="Filtrare candidati C" />
-                  <Button fx:id="buttonModifC21" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="50.0" prefWidth="150.0" text="Eliminare filtru" />
+                  <Button fx:id="buttonAddC" mnemonicParsing="false" onAction="#handleAddCandidat" prefHeight="30.0" prefWidth="150.0" text="Add" />
+                  <Button fx:id="buttonDelC" mnemonicParsing="false" onAction="#handleDeleteCandidat" prefHeight="30.0" prefWidth="150.0" text="Delete" />
+                  <Button fx:id="buttonModifC" mnemonicParsing="false" onAction="#handleUpdateCandidat" prefHeight="30.0" prefWidth="150.0" text="Edit" />
+                  <Label text="Filtrare candidati dupa varsta" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label text="Varsta &gt;= " textFill="#236f48">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="aniFilterTextField" prefHeight="25.0" prefWidth="105.0" promptText="Ex: 18" />
+                        <Button fx:id="buttonModifC1" mnemonicParsing="false" onAction="#handleFilterAni" prefHeight="25.0" prefWidth="102.0" text="Filtrare" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+                  <Label layoutX="19.0" layoutY="235.0" text="Filtrare candidati dupa nume" textFill="#236f48">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="305.0" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="121.0" text="Numele contine:" textFill="#236f48">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="numeFilterTextField" prefHeight="25.0" prefWidth="93.0" promptText="Ex: ian" />
+                        <Button fx:id="buttonModifC2" mnemonicParsing="false" onAction="#handleFilterNume" prefHeight="25.0" prefWidth="101.0" text="Filtrare" />
+                     </children>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </HBox>
+                  <Button fx:id="buttonModifC21" mnemonicParsing="false" onAction="#handleRemoveFilter" prefHeight="30.0" prefWidth="150.0" text="Eliminare filtru" />
                </children>
                <padding>
-                  <Insets bottom="40.0" />
+                  <Insets bottom="10.0" />
                </padding>
+               <BorderPane.margin>
+                  <Insets bottom="40.0" />
+               </BorderPane.margin>
             </VBox>
          </center>
       </BorderPane>

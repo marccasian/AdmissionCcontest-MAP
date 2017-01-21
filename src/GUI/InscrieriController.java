@@ -230,12 +230,17 @@ public class InscrieriController implements Observer<Inscriere> {
     	Integer nr = -1;
     	try{
     		nr = Integer.parseInt(nrs);
+    		if (nr >= 0){
+    			return nr;
+    		}
+    		throw new NumberFormatException();
     	}catch (NumberFormatException e) {
         	showErrorMessage("Numarul de intrari in raport trebuie sa fie numar natural!");
         }
     	
     	return nr;
 	}
+    
 	public void showInscriereEditDialog(Inscriere c) {
 //        try {
 //            // create a new stage for the popup dialog.

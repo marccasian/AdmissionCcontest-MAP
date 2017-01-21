@@ -95,8 +95,22 @@ public class ControllerCandidat implements Observable<Candidat>{
 		return filt;
 	}
 	
+	public List<Candidat> filterCandidatiAni(Integer nr){
+		Predicate<Candidat> aniFilter=c->{return ((domain.Candidat) c).getVarsta()>=nr;};
+		List<Candidat> filt = filtrare((List<Candidat>)getCandidati(), aniFilter);
+		Collections.sort(filt,(f1,f2)->(int)(((domain.Candidat) f1).getVarsta()-((domain.Candidat) f2).getVarsta()));
+		return filt;
+	}
+	
 	public List<Candidat> filterCandidatiC(){
 		List<Candidat> filt =  filtrare((List<Candidat>)getCandidati(), startWithC);
+		Collections.sort(filt,(f1,f2)->(((domain.Candidat) f1).getNume().compareTo(((domain.Candidat) f2).getNume())));
+		return filt;
+	}
+	
+	public List<Candidat> filterCandidatiNume(String nu){
+		Predicate<Candidat> filterNume=c->((domain.Candidat) c).getNume().contains(nu);
+		List<Candidat> filt =  filtrare((List<Candidat>)getCandidati(), filterNume);
 		Collections.sort(filt,(f1,f2)->(((domain.Candidat) f1).getNume().compareTo(((domain.Candidat) f2).getNume())));
 		return filt;
 	}
